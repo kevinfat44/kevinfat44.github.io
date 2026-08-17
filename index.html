@@ -3,114 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curtain Fabric Catalog ｜ 窗簾布樣型錄展示</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <title>KADOLI TEXTILE ｜ 卡多利窗飾・國際傢飾布典藏</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
     :root {
-      --bg-warm: #F7F6F2;
+      --bg-warm: #F8F7F4;
       --card-bg: #FFFFFF;
-      --text-main: #2B2A27;
-      --text-sub: #7A7873;
-      --accent-gold: #B38E5D;
-      --border-color: #E8E6DF;
-      --radius: 12px;
-      --shadow: 0 8px 30px rgba(0,0,0,0.05);
+      --text-main: #1A1918;
+      --text-sub: #6E6C65;
+      --accent: #B89C72;
+      --accent-soft: #F4EFE6;
+      --border: #E8E5DF;
+      --radius: 8px;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Noto Sans TC', sans-serif;
-      background: var(--bg-warm);
+      background-color: var(--bg-warm);
       color: var(--text-main);
-      line-height: 1.6;
-      padding-bottom: 80px;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
     }
 
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+    a { text-decoration: none; color: inherit; }
 
-    /* Header */
-    header {
-      text-align: center;
-      padding: 60px 20px 40px;
-    }
-    .en-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
-      letter-spacing: 3px;
-      color: var(--accent-gold);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .main-title {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    /* Filter Bar */
-    .filter-bar {
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(248, 247, 244, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 18px 40px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 40px;
+      justify-content: space-between;
+      align-items: center;
     }
-    .filter-btn {
-      background: #fff;
-      border: 1px solid var(--border-color);
-      padding: 8px 18px;
-      border-radius: 30px;
+    .brand-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
       font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.25s;
+      font-weight: 500;
+      color: var(--text-sub);
     }
-    .filter-btn.active, .filter-btn:hover {
+    .nav-links a:hover { color: var(--text-main); }
+    .btn-contact {
       background: var(--text-main);
       color: #fff;
-      border-color: var(--text-main);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      transition: var(--transition);
     }
+    .btn-contact:hover { background: var(--accent); }
 
-    /* Catalog Section (Like Lilycolor Book Entry) */
-    .section-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 20px;
+    /* Hero Section */
+    .hero {
+      height: 90vh;
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+      margin-top: 60px;
+      overflow: hidden;
     }
-    .section-title::before {
-      content: '';
-      display: inline-block;
-      width: 4px;
-      height: 18px;
-      background: var(--accent-gold);
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.65);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      color: #e5e5e5;
+    }
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
     }
 
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    /* Catalog Cards (見本帳型錄) */
     .catalog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 50px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 32px;
     }
-
     .catalog-card {
       background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      border: 1px solid var(--border-color);
       overflow: hidden;
-      box-shadow: var(--shadow);
+      transition: var(--transition);
       display: flex;
       flex-direction: column;
-      transition: transform 0.3s;
     }
-    .catalog-card:hover { transform: translateY(-4px); }
-
+    .catalog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+      border-color: var(--accent);
+    }
     .catalog-cover {
-      height: 200px;
-      background: #e2dfd8;
+      height: 240px;
       position: relative;
       overflow: hidden;
     }
@@ -118,130 +167,158 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.6s ease;
     }
-    .catalog-badge {
+    .catalog-card:hover .catalog-cover img {
+      transform: scale(1.05);
+    }
+    .catalog-tag {
       position: absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(43,42,39,0.85);
+      top: 16px;
+      left: 16px;
+      background: rgba(26,25,24,0.85);
       color: #fff;
+      padding: 4px 12px;
       font-size: 0.75rem;
-      padding: 4px 10px;
       border-radius: 4px;
       backdrop-filter: blur(4px);
     }
-
-    .catalog-body {
-      padding: 20px;
+    .catalog-info {
+      padding: 28px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .catalog-series-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
-    .catalog-desc { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 16px; }
-
-    .catalog-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      border-top: 1px dashed var(--border-color);
-      padding-top: 16px;
+    .catalog-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
-    .action-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 12px;
+    .catalog-desc {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+    }
+    .catalog-actions {
+      display: flex;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    .btn-action {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
       border-radius: 6px;
       font-size: 0.85rem;
       font-weight: 600;
-      text-decoration: none;
-      transition: 0.2s;
+      transition: var(--transition);
     }
-    .btn-web-view { background: var(--text-main); color: #fff; }
-    .btn-web-view:hover { background: #444; }
-    .btn-pdf { background: #f0eee9; color: var(--text-main); }
-    .btn-pdf:hover { background: #e2ded5; }
+    .btn-primary { background: var(--text-main); color: #fff; }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-secondary { background: var(--accent-soft); color: var(--text-main); }
+    .btn-secondary:hover { background: #e8ded0; }
 
-    /* Fabric Swatch Cards */
-    .sample-grid {
+    /* Highlights / Features */
+    .features-strip {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 24px;
+    }
+    .features-grid {
+      max-width: 1200px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+      text-align: center;
     }
-    .sample-card {
-      background: #fff;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 14px;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      transition: 0.3s;
+    .feature-icon {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 16px;
     }
-    .sample-card:hover { border-color: var(--accent-gold); }
+    .feature-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .feature-text { font-size: 0.88rem; color: var(--text-sub); }
 
-    .sample-img-box {
-      width: 100%;
-      height: 160px;
-      background: #edebe6;
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 12px;
-      position: relative;
+    @media (max-width: 768px) {
+      .nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero-title { font-size: 2rem; }
+      .container { padding: 60px 16px; }
     }
-    .sample-img-box img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: opacity 0.3s;
-    }
-
-    .sample-code { font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.95rem; }
-    .sample-type { font-size: 0.85rem; color: var(--text-sub); }
-    .swatch-dots { display: flex; gap: 6px; margin: 8px 0; }
-    .dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid #ccc; }
-
-    .tag-group { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
-    .tag { font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; background: #f0eee9; color: var(--text-sub); }
-    .tag.highlight { background: #fef3c7; color: #92400e; font-weight: 600; }
   </style>
 </head>
 <body>
 
-  <header class="container">
-    <div class="en-title">Textile & Curtain Collection</div>
-    <h1 class="main-title">窗簾樣本見本帳型錄</h1>
+  <!-- Top Nav -->
+  <nav class="nav">
+    <div class="brand-logo">KADOLI <span>卡多利窗飾</span></div>
+    <div class="nav-links">
+      <a href="#catalog">見本帳型錄</a>
+      <a href="#fabrics">布樣材質</a>
+      <a href="#projects">工程實績</a>
+      <a href="#about">關於品牌</a>
+    </div>
+    <a href="#contact" class="btn-contact">索取樣品 / 合作洽詢</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80" alt="高級窗飾空間">
+    <div class="hero-content">
+      <div class="hero-subtitle">Architectural Textile & Window Décor</div>
+      <h1 class="hero-title">以光影與質地，定義空間的沉靜美學</h1>
+      <p style="font-size: 1rem; color: #e2e8f0; font-weight: 300;">創立自 1999 年 ｜ 日本防炎規範 ｜ 高精密緹花與多層次遮光傢飾布專門</p>
+    </div>
   </header>
 
-  <main class="container">
-    
-    <!-- 篩選列 -->
-    <div class="filter-bar">
-      <button class="filter-btn active">全部型錄</button>
-      <button class="filter-btn">頂級緹花 / 蛇形簾</button>
-      <button class="filter-btn">極致遮光 / 隔熱</button>
-      <button class="filter-btn">透光柔紗 / 亞麻</button>
-      <button class="filter-btn">風琴簾 / 蜂巢簾</button>
+  <!-- Brand Highlights -->
+  <section class="features-strip">
+    <div class="features-grid">
+      <div>
+        <div class="feature-icon"><i class="fa-solid fa-scroll"></i></div>
+        <div class="feature-title">多樣化見本帳系列</div>
+        <div class="feature-text">從無接縫高垂墜紗、頂級緹花到多層次物理遮光布，涵蓋千款花色。</div>
+      </div>
+      <div>
+        <div class="feature-icon"><i class="fa-solid fa-fire-shield"></i></div>
+        <div class="feature-title">防焰與安全規範</div>
+        <div class="feature-text">符合內政部消防署防焰認定與安全標準，各大飯店與商用空間指定。</div>
+      </div>
+      <div>
+        <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
+        <div class="feature-title">MIT 認證與優良品質</div>
+        <div class="feature-text">嚴格品管與穩定供貨時效，為全台設計師與裝潢工程提供強大後盾。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Section -->
+  <main class="container" id="catalog">
+    <div class="section-header">
+      <div class="section-en">DIGITAL CATALOGS</div>
+      <h2 class="section-title">線上電子型錄與布樣見本帳</h2>
     </div>
 
-    <!-- 1. 見本帳一覧 (Catalog Books) -->
-    <h2 class="section-title">線上見本帳（WEB CATALOG）</h2>
     <div class="catalog-grid">
       
       <!-- 型錄卡片 1 -->
       <div class="catalog-card">
         <div class="catalog-cover">
-          <span class="catalog-badge">2026-2027 NEW</span>
-          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Sentio Collection">
+          <span class="catalog-tag">FLAGSHIP</span>
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=700&q=80" alt="創世紀多層次遮光">
         </div>
-        <div class="catalog-body">
+        <div class="catalog-info">
           <div>
-            <div class="catalog-series-name">SENTIO 奢華緹花典藏</div>
-            <p class="catalog-desc">以現代日系工藝打造高精密織紋，全系列具備日本防炎認定與高垂墜度蛇形簾適配性。</p>
+            <h3 class="catalog-name">創世紀・多層次遮光系列 8</h3>
+            <p class="catalog-desc">三層黑絲夾層物理遮光技術，兼具亞麻自然手感與 99% 高遮光效能，適合臥室與西曬空間。</p>
           </div>
           <div class="catalog-actions">
-            <a href="#" class="action-btn btn-web-view"><i class="fa-solid fa-book-open"></i> 線上翻閱</a>
-            <a href="#" class="action-btn btn-pdf"><i class="fa-solid fa-file-pdf"></i> PDF 規格表</a>
+            <a href="#" class="btn-action btn-primary"><i class="fa-solid fa-book-open"></i> 線上翻閱</a>
+            <a href="#" class="btn-action btn-secondary"><i class="fa-solid fa-file-pdf"></i> PDF 規格</a>
           </div>
         </div>
       </div>
@@ -249,17 +326,17 @@
       <!-- 型錄卡片 2 -->
       <div class="catalog-card">
         <div class="catalog-cover">
-          <span class="catalog-badge">POPULAR</span>
-          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80" alt="Natural Linen">
+          <span class="catalog-tag">HOTEL & PROJECT</span>
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=700&q=80" alt="夢想家防焰系列">
         </div>
-        <div class="catalog-body">
+        <div class="catalog-info">
           <div>
-            <div class="catalog-series-name">NATURAL 素色與柔光紗</div>
-            <p class="catalog-desc">純粹亞麻混紡與高採光透光紗，營造無印風溫潤光影，高性價比、全色系 48 色選。</p>
+            <h3 class="catalog-name">夢想家・防焰傢飾布典藏</h3>
+            <p class="catalog-desc">通過國家防焰標準檢驗，廣泛運用於大型工程、精品飯店與醫療長照院所，安全與美感並存。</p>
           </div>
           <div class="catalog-actions">
-            <a href="#" class="action-btn btn-web-view"><i class="fa-solid fa-book-open"></i> 線上翻閱</a>
-            <a href="#" class="action-btn btn-pdf"><i class="fa-solid fa-file-pdf"></i> PDF 規格表</a>
+            <a href="#" class="btn-action btn-primary"><i class="fa-solid fa-book-open"></i> 線上翻閱</a>
+            <a href="#" class="btn-action btn-secondary"><i class="fa-solid fa-file-pdf"></i> PDF 規格</a>
           </div>
         </div>
       </div>
@@ -267,64 +344,22 @@
       <!-- 型錄卡片 3 -->
       <div class="catalog-card">
         <div class="catalog-cover">
-          <span class="catalog-badge">FUNCTION</span>
-          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80" alt="Blackout & Shade">
+          <span class="catalog-tag">ELEGANCE</span>
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=700&q=80" alt="布拉格緹花系列">
         </div>
-        <div class="catalog-body">
+        <div class="catalog-info">
           <div>
-            <div class="catalog-series-name">SHADE 蜂巢簾與100%遮光</div>
-            <p class="catalog-desc">六角中空蜂巢阻隔冷熱空氣，搭配三層黑絲夾層物理遮光，臥室睡眠與西曬空間專用。</p>
+            <h3 class="catalog-name">布拉格・精緻緹花與無接縫紗</h3>
+            <p class="catalog-desc">高針密細膩織造工藝，完美呈現蛇形簾的大波浪垂墜弧度，為現代住宅注入輕奢層次。</p>
           </div>
           <div class="catalog-actions">
-            <a href="#" class="action-btn btn-web-view"><i class="fa-solid fa-book-open"></i> 線上翻閱</a>
-            <a href="#" class="action-btn btn-pdf"><i class="fa-solid fa-file-pdf"></i> PDF 規格表</a>
+            <a href="#" class="btn-action btn-primary"><i class="fa-solid fa-book-open"></i> 線上翻閱</a>
+            <a href="#" class="btn-action btn-secondary"><i class="fa-solid fa-file-pdf"></i> PDF 規格</a>
           </div>
         </div>
       </div>
 
     </div>
-
-    <!-- 2. 精選布樣快速選品 (Sample Grid) -->
-    <h2 class="section-title">熱門布樣推薦 (點擊看細節)</h2>
-    <div class="sample-grid">
-      
-      <div class="sample-card">
-        <div class="sample-img-box">
-          <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=400&q=80" alt="布樣">
-        </div>
-        <div class="sample-code">LS-63012 燕麥米</div>
-        <div class="sample-type">自然亞麻紋理 遮光布</div>
-        <div class="swatch-dots">
-          <span class="dot" style="background: #E6E2D8;"></span>
-          <span class="dot" style="background: #C4BEB1;"></span>
-          <span class="dot" style="background: #8F8B82;"></span>
-        </div>
-        <div class="tag-group">
-          <span class="tag highlight">遮光率 90%</span>
-          <span class="tag">防炎認證</span>
-          <span class="tag">可水洗</span>
-        </div>
-      </div>
-
-      <div class="sample-card">
-        <div class="sample-img-box">
-          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=400&q=80" alt="布樣">
-        </div>
-        <div class="sample-code">FD-55104 霧白柔紗</div>
-        <div class="sample-type">採光擴散 無縫垂墜紗</div>
-        <div class="swatch-dots">
-          <span class="dot" style="background: #FFFFFF;"></span>
-          <span class="dot" style="background: #F4F1EA;"></span>
-        </div>
-        <div class="tag-group">
-          <span class="tag highlight">採光擴散</span>
-          <span class="tag">UV 阻隔 75%</span>
-          <span class="tag">抗靜電</span>
-        </div>
-      </div>
-
-    </div>
-
   </main>
 
 </body>
