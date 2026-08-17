@@ -1,422 +1,1874 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 名古屋冬季初訪之旅</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            margin: 0;
-            background-color: #f4f7f6;
-            color: #333;
-            overflow: hidden; /* Hide scrollbars during intro */
-        }
-        /* --- Video Intro Styles --- */
-        #intro-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s ease-in-out;
-        }
-        #intro-video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Prevent cropping */
-        }
-        #skip-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            z-index: 1001;
-            transition: background-color 0.3s;
-        }
-        #skip-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        .hidden {
-            display: none !important;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇯🇵 2026 名古屋冬季初訪之旅 🏯</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 15px;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        .tab-nav {
-            display: flex;
-            flex-wrap: wrap;
-            border-bottom: 2px solid #ddd;
-            margin-bottom: 20px;
-        }
-        .tab-button {
-            border: 1px solid #bdc3c7;
-            border-bottom: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-right: 5px;
-            margin-bottom: -2px;
-            border-radius: 5px 5px 0 0;
-            transition: all 0.3s;
-            position: relative;
-            bottom: -1px;
-            color: #34495e;
-            font-weight: 500;
-        }
-        .tab-button:hover {
-            opacity: 0.9;
-        }
-        .tab-button.active {
-            color: white;
-            border-bottom: 2px solid white;
-        }
-        .tab-content {
-            display: none;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-top-width: 2px;
-            border-radius: 0 5px 5px 5px;
-            animation: fadeIn 0.5s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .tab-content.active {
-            display: block;
-        }
-        
-        /* Refined Color Palette */
-        .tab-button.day1 { background-color: #a9cce3; border-color: #a9cce3; }
-        .tab-button.day2 { background-color: #abebc6; border-color: #abebc6; }
-        .tab-button.day3 { background-color: #d2b4de; border-color: #d2b4de; }
-        .tab-button.day4 { background-color: #f5cba7; border-color: #f5cba7; }
-        .tab-button.day5 { background-color: #a2d9ce; border-color: #a2d9ce; }
-        .tab-button.day6 { background-color: #f5b7b1; border-color: #f5b7b1; }
-        .tab-button.day7 { background-color: #ccd1d1; border-color: #ccd1d1; }
-        .tab-button.default-color { background-color: #ecf0f1; border-color: #bdc3c7; }
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-soft: #eff6ff;
+      --accent: #e11d48;
+      --accent-soft: #ffe4e6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(15,23,42,0.06);
+      --shadow-hover: 0 12px 28px rgba(15,23,42,0.12);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        .tab-button.day1.active, .tab-content.day1.active { border-color: #2c5a89; }
-        .tab-button.day1.active { background-color: #2c5a89; }
-        .tab-button.day2.active, .tab-content.day2.active { border-color: #1e8449; }
-        .tab-button.day2.active { background-color: #1e8449; }
-        .tab-button.day3.active, .tab-content.day3.active { border-color: #8e44ad; }
-        .tab-button.day3.active { background-color: #8e44ad; }
-        .tab-button.day4.active, .tab-content.day4.active { border-color: #d35400; }
-        .tab-button.day4.active { background-color: #d35400; }
-        .tab-button.day5.active, .tab-content.day5.active { border-color: #16a085; }
-        .tab-button.day5.active { background-color: #16a085; }
-        .tab-button.day6.active, .tab-content.day6.active { border-color: #c0392b; }
-        .tab-button.day6.active { background-color: #c0392b; }
-        .tab-button.day7.active, .tab-content.day7.active { border-color: #5d6d7e; }
-        .tab-button.day7.active { background-color: #5d6d7e; }
-        
-        .tab-button.default-color.active { background-color: #3498db; }
-        .tab-content.default-color.active { border-color: #3498db; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; vertical-align: top; }
-        th { background-color: #f2f2f2; font-weight: bold; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        a { color: #2980b9; text-decoration: none; font-weight: 500; }
-        a:hover { text-decoration: underline; }
-        h2 { color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; margin-top: 10px; }
-        h3 { color: #34495e; margin-top: 25px; margin-bottom: 15px; }
-        b.hotel-label { margin-right: 1em; }
+    body {
+      font-family: 'Outfit', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 60px;
+    }
 
-        /* CARD LAYOUT */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 0; }
-        .card { background-color: #fff; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .card-header { padding: 15px; display: flex; align-items: center; }
-        .card-icon { font-size: 24px; margin-right: 15px; width: 30px; text-align: center; }
-        .card-title { font-weight: 600; font-size: 1.1em; color: #2c3e50; }
-        .card-subtitle { font-size: 0.9em; color: #7f8c8d; margin-top: 2px; }
-        .card-body { padding: 0 15px 15px; font-size: 0.95em; color: #34495e; flex-grow: 1; }
-        .card-body .price { color: #e74c3c; font-weight: 600; display: block; margin-top: 5px; }
-        .card-footer { background-color: #f8f9fa; padding: 10px 15px; text-align: center; border-top: 1px solid #e9ecef; }
-        .card-button { display: inline-block; background-color: #3498db; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: 500; font-size: 0.9em; transition: background-color 0.2s; }
-        .card-button:hover { background-color: #2980b9; text-decoration: none; }
-        
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
-            .tab-button { font-size: 14px; padding: 8px 10px; }
-            .card-grid { grid-template-columns: 1fr; }
-            table, thead, tbody, th, td, tr { display: block; }
-            thead tr { position: absolute; top: -9999px; left: -9999px; }
-            tr { border: 1px solid #ccc; margin-bottom: 10px; }
-            td { border: none; border-bottom: 1px solid #eee; position: relative; padding: 12px 12px 12px 50%; min-height: 2.5em; white-space: normal; text-align: left; display: flex; align-items: center; }
-            td:last-child { border-bottom: none; }
-            td:before { position: absolute; top: 50%; transform: translateY(-50%); left: 12px; width: 45%; padding-right: 10px; white-space: nowrap; text-align: left; font-weight: bold; color: #333; }
-            td:nth-of-type(1):before { content: "車程時間"; }
-            td:nth-of-type(2):before { content: "車資"; }
-            td:nth-of-type(3):before { content: "行程安排"; }
-            td:nth-of-type(4):before { content: "交通方式"; }
-            td:nth-of-type(5):before { content: "備註"; }
-            td[colspan] { padding-left: 12px; }
-            td[colspan]:before { content: none; }
-        }
-    </style>
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Hero Section */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      height: 48vh;
+      min-height: 320px;
+      max-height: 460px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f172a;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-50%, -50%);
+      opacity: 0.65;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,23,42,0.3) 0%, rgba(15,23,42,0.85) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 32px 20px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      font-weight: 400;
+    }
+
+    /* Sticky Navigation Bar */
+    .nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-scroll {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: var(--text-sub);
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .nav-pill:hover, .nav-pill.active {
+      background: var(--primary);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 900px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+    }
+
+    /* Section Cards */
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      scroll-margin-top: 80px;
+    }
+
+    .day-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 2px solid var(--bg);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    .day-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .day-badge {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .day-heading {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .hotel-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      margin-top: 20px;
+      font-weight: 500;
+    }
+
+    .cost-summary {
+      font-size: 0.85rem;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    /* Vertical Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 7px;
+      width: 2px;
+      background: #e2e8f0;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 22px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -28px;
+      top: 5px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    .timeline-content {
+      background: #f8fafc;
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .timeline-content:hover {
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+      border-color: #cbd5e1;
+    }
+
+    .timeline-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .time-badge {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      background: #e2e8f0;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .fare-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #b91c1c;
+      background: #fee2e2;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .trans-badge {
+      font-size: 0.8rem;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 2px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .spot-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .timeline-note {
+      font-size: 0.88rem;
+      color: var(--text-sub);
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .action-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--primary-light);
+      background: #fff;
+      border: 1px solid #bfdbfe;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .action-link:hover {
+      background: var(--primary-light);
+      color: #fff;
+    }
+
+    /* Grid Layouts for Food, Shopping & Coupons */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .category-subheading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 22px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .card-item:hover {
+      transform: translateY(-3px);
+      background: #ffffff;
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .card-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .card-name {
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--text-main);
+    }
+
+    .card-subtext {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .price-tag {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.88rem;
+    }
+
+    /* Shopping Checkbox */
+    .shop-item {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .shop-item.checked {
+      opacity: 0.55;
+      background: #f1f5f9;
+    }
+
+    .shop-item.checked .card-name {
+      text-decoration: line-through;
+    }
+
+    /* Coupon Ticket Card */
+    .coupon-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px dashed #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .coupon-card:hover {
+      border-color: var(--primary-light);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .coupon-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .coupon-btn {
+      background: var(--accent);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .coupon-btn:hover {
+      background: #be123c;
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+    }
+
+    /* Scroll to Top Button */
+    .btn-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      z-index: 99;
+    }
+
+    .btn-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 640px) {
+      .hero-title { font-size: 1.55rem; }
+      .section-card { padding: 20px 16px; }
+      .grid-cards { grid-template-columns: 1fr; }
+      .day-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
 </head>
 <body>
 
-<div id="intro-overlay">
-    <video id="intro-video" src="2026NOGOYA.mp4" autoplay muted playsinline></video>
-    <button id="skip-button">略過動畫 ›</button>
-</div>
+  <!-- Hero Section with Background Video -->
+  <header class="hero-container">
+    <video class="hero-video" autoplay muted loop playsinline src="2026NOGOYA.mp4"></video>
+    <div class="hero-overlay">
+      <div class="hero-tag"><i class="fa-solid fa-snowflake"></i> WINTER TRAVEL GUIDE</div>
+      <h1 class="hero-title">🇯🇵 2026 名古屋冬季初訪之旅 🏯</h1>
+      <p class="hero-sub">7-Day Winter Itinerary & Complete Travel Notebook</p>
+    </div>
+  </header>
 
-<div class="container hidden" id="main-content">
-    <h1>🇯🇵 2026 名古屋冬季初訪之旅 🏯</h1>
+  <!-- Sticky Navigation Bar -->
+  <nav class="nav-wrapper">
+    <div class="nav-scroll">
+      <a href="#day1" class="nav-pill active"><i class="fa-solid fa-calendar-day"></i> DAY 1</a>
+      <a href="#day2" class="nav-pill"><i class="fa-solid fa-calendar-day"></i> DAY 2</a>
+      <a href="#day3" class="nav-pill"><i class="fa-solid fa-calendar-day"></i> DAY 3</a>
+      <a href="#day4" class="nav-pill"><i class="fa-solid fa-calendar-day"></i> DAY 4</a>
+      <a href="#day5" class="nav-pill"><i class="fa-solid fa-calendar-day"></i> DAY 5</a>
+      <a href="#day6" class="nav-pill"><i class="fa-solid fa-calendar-day"></i> DAY 6</a>
+      <a href="#day7" class="nav-pill"><i class="fa-solid fa-calendar-day"></i> DAY 7</a>
+      <a href="#food" class="nav-pill"><i class="fa-solid fa-utensils"></i> 美食推薦</a>
+      <a href="#shopping" class="nav-pill"><i class="fa-solid fa-bag-shopping"></i> 必買清單</a>
+      <a href="#coupon" class="nav-pill"><i class="fa-solid fa-ticket"></i> 優惠券</a>
+    </div>
+  </nav>
 
-    <div class="tab-nav">
-        <button class="tab-button day1" onclick="openTab(event, 'day1')">Day 1</button>
-        <button class="tab-button day2" onclick="openTab(event, 'day2')">Day 2</button>
-        <button class="tab-button day3" onclick="openTab(event, 'day3')">Day 3</button>
-        <button class="tab-button day4" onclick="openTab(event, 'day4')">Day 4</button>
-        <button class="tab-button day5" onclick="openTab(event, 'day5')">Day 5</button>
-        <button class="tab-button day6" onclick="openTab(event, 'day6')">Day 6</button>
-        <button class="tab-button day7" onclick="openTab(event, 'day7')">Day 7</button>
-        <button class="tab-button default-color" onclick="openTab(event, 'food')">美食推薦</button>
-        <button class="tab-button default-color" onclick="openTab(event, 'shopping')">購物清單</button>
-        <button class="tab-button default-color" onclick="openTab(event, 'coupons')">優惠券</button>
-    </div>
+  <!-- Main Content Container -->
+  <main class="container">
 
-    <!-- Daily Itinerary Tabs -->
-    <div id="day1" class="tab-content day1">
-        <h2>2026年2月5日(四) DAY1 起手式+逛街</h2>
-        <table><tbody>
-            <tr><td>23:30~00:20</td><td>&nbsp;</td><td><a href="https://www.google.com/maps/search/?api=1&query=桃園機場第一航廈" target="_blank">桃園機場(第一航廈)</a></td><td>開車</td><td>&nbsp;</td></tr>
-            <tr><td>02:55~06:25</td><td>&nbsp;</td><td><a href="https://www.google.com/maps/search/?api=1&query=中部國際機場第一航廈" target="_blank">中部國際機場(第一航廈)</a></td><td>樂桃航空</td><td>機場吃早餐</td></tr>
-            <tr><td>08:00~09:00</td><td>¥1150</td><td>飯店放行李</td><td>名鐵特急→名城線→東山線 7號出口</td><td><a href="https://trainbus.meitetsu.co.jp/meitetsu-transfer-zh-tw/pc/diagram/TrainDiagram?startId=00009406&linkId=00001057&direction=up&rule=&datetime=2026-02-05" target="_blank">列車班表</a> 急行</td></tr>
-            <tr><td>09:30~</td><td>&nbsp;</td><td><a href="https://www.google.com/maps/search/?api=1&query=名古屋科學館" target="_blank">名古屋科學館</a>+逛街</td><td>&nbsp;</td><td>科學館門票 ¥400</td></tr>
-            <tr><td>20:00~20:30</td><td>&nbsp;</td><td>飯店Check-in</td><td>&nbsp;</td><td>★買防水噴霧</td></tr>
-            <tr><td colspan="5"><b class="hotel-label">住宿飯店</b> <a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank">名古屋伏見大和Roynet飯店</a></td></tr>
-        </tbody></table>
-        <div class="total-cost">★(車資總金額=¥1150) | 西瓜卡加值 ¥6000</div>
-    </div>
-    <div id="day2" class="tab-content day2">
-        <h2>2026年2月6日(五) DAY2 飛驒高山+合掌村</h2>
-        <table><tbody>
-            <tr><td>08:20~08:35</td><td>¥210</td><td><a href="https://maps.app.goo.gl/SpXASCwVWwccL35s7" target="_blank">Ministop集合</a></td><td>東山線 E5號出口</td><td>&nbsp;</td></tr>
-            <tr><td>09:00~18:30</td><td>$1300</td><td>高山+合掌村一日遊</td><td>遊覽車</td><td><a href="https://www.kkday.com/zh-tw/product/135964" target="_blank">KKDAY</a>、午餐</td></tr>
-            <tr><td>19:00~</td><td>&nbsp;</td><td><a href="https://www.google.com/maps/search/?api=1&query=名古屋車站" target="_blank">名古屋車站</a></td><td>&nbsp;</td><td><a href="https://www.google.com/maps/search/?api=1&query=名古屋車站晚餐" target="_blank">晚餐</a>+逛街+<a href="https://maps.app.goo.gl/BEsFV27nSH9sxcs29" target="_blank">千里馬藥局</a></td></tr>
-            <tr><td>21:00~20:30</td><td>¥210</td><td><a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank">回飯店</a></td><td>東山線</td><td>買隔天早餐</td></tr>
-            <tr><td colspan="5"><b class="hotel-label">住宿飯店</b> <a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank">名古屋伏見大和Roynet飯店</a></td></tr>
-        </tbody></table>
-        <div class="total-cost">★(車資總金額=¥420)</div>
-    </div>
-    <div id="day3" class="tab-content day3">
-        <h2>2026年2月7日(六) DAY3 御在所岳玩雪 <a href="https://www.gozaisho.co.jp/" target="_blank" style="color:red; font-size: 0.8em; font-weight:bold;">※官網查營運狀況※</a></h2>
-        <table><tbody>
-            <tr><td>07:01~07:20</td><td>¥210</td><td><a href="https://www.google.com/maps/search/?api=1&query=名鐵巴士中心" target="_blank">名鐵巴士中心</a></td><td>東山線 7號出口</td><td>3F 2號</td></tr>
-            <tr><td>07:48~09:05</td><td>¥1800</td><td><a href="https://www.google.com/maps/search/?api=1&query=御在所纜車" target="_blank">御在所纜車前</a></td><td>直達巴士(現場買) 07:55、08:45</td><td><a href="https://www.sanco.co.jp/krs/search/result?lang=zh-TW&dep=1041&arr=2107&timecd=1&date=2026-02-07&time=07%3A31" target="_blank">巴士資訊</a></td></tr>
-            <tr><td>09:15~09:35</td><td>¥2600來回</td><td><a href="https://www.gozaisho.co.jp/highlight/summit/#map" target="_blank">御在所公園</a></td><td>御在所纜車+山頂纜車 ¥700(來回)</td><td><a href="https://www.agoda.com/zh-tw/activities/detail?activityId=1034434" target="_blank">AGODA購票</a></td></tr>
-            <tr><td>14:44~15:55</td><td>¥1800</td><td><a href="https://www.google.com/maps/search/?api=1&query=名古屋車站" target="_blank">名古屋車站</a></td><td>直達巴士 14:44、16:44</td><td><a href="https://japantravel.navitime.com/zh-tw/area/jp/route?start=00008576&start_name=%E5%90%8D%E5%8F%A4%E5%B1%8B&goal=00542560" target="_blank">巴士資訊</a></td></tr>
-            <tr><td>21:30~21:45</td><td>¥210</td><td>回飯店+洗衣</td><td>東山線</td><td><a href="https://www.gozaisho.co.jp/wordpress/wp-content/uploads/2022/04/567a0523ad91b3d31d2b38826e4c5a4f.pdf" target="_blank">行程B</a></td></tr>
-            <tr><td colspan="5"><b class="hotel-label">住宿飯店</b> <a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank">名古屋伏見大和Roynet飯店</a></td></tr>
-        </tbody></table>
-        <div class="total-cost">★(車資總金額=¥4020) 不含纜車費用</div>
-    </div>
-    <div id="day4" class="tab-content day4">
-        <h2>2026年2月8日(日) DAY4 三井outlet park 爵士之夢長島 或 岡崎</h2>
-        <table><tbody>
-            <tr><td>07:30~07:45</td><td>&nbsp;</td><td><a href="https://www.google.com/maps/search/?api=1&query=名鐵巴士中心" target="_blank">名鐵巴士中心</a></td><td>&nbsp;</td><td>Cook Town吃早餐</td></tr>
-            <tr><td>09:00~09:50</td><td>¥1350</td><td><a href="https://www.google.com/maps/search/?api=1&query=三井outlet+park+爵士之夢長島" target="_blank">三井outlet park 爵士之夢長島</a></td><td>直達巴士</td><td><a href="https://mitsui-shopping-park.com/mop/nagashima/tw/access/#access01" target="_blank">巴士搭乘攻略</a> 4F 22號</td></tr>
-            <tr><td>16:00~16:55</td><td>¥1350</td><td><a href="https://www.google.com/maps/search/?api=1&query=名古屋車站" target="_blank">名古屋車站</a></td><td>直達巴士</td><td><a href="https://www.sanco.co.jp/krs/search/result?arr=1041&date=2026-02-08&dep=1051&lang=zh-TW&offset=8&timecd=1" target="_blank">巴士回程資訊</a></td></tr>
-            <tr><td>21:15~21:30</td><td>¥210</td><td>回飯店</td><td>東山線</td><td>&nbsp;</td></tr>
-            <tr><td colspan="5"><b class="hotel-label">住宿飯店</b> <a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank">名古屋伏見大和Roynet飯店</a></td></tr>
-        </tbody></table>
-        <div class="total-cost">★(車資總金額=¥2910) *直達巴士應為¥2700來回，此處按計畫書分開計</div>
-    </div>
-    <div id="day5" class="tab-content day5">
-        <h2>2026年2月9日(一) DAY5 犬山城洗錢 + MOZO Wonder City (AEON)</h2>
-        <table><tbody>
-            <tr><td>09:00~10:00</td><td>¥750</td><td><a href="https://www.google.com/maps/search/?api=1&query=Workman+plus+犬山" target="_blank">Workman plus+</a></td><td>鶴舞線→ 名鐵犬山線</td><td>&nbsp;</td></tr>
-            <tr><td>11:30~12:00</td><td>&nbsp;</td><td><a href="https://www.google.com/maps/search/?api=1&query=犬山城下町" target="_blank">犬山城下町</a></td><td>&nbsp;</td><td>&nbsp;</td></tr>
-            <tr><td>15:00~15:40</td><td>¥570</td><td><a href="https://www.google.com/maps/search/?api=1&query=MOZO+Wonder+City" target="_blank">MOZO Wonder City</a></td><td>名鐵犬山線</td><td>&nbsp;</td></tr>
-            <tr><td>21:15~21:30</td><td>¥240</td><td>回飯店+洗衣</td><td>鶴舞線</td><td>&nbsp;</td></tr>
-            <tr><td colspan="5"><b class="hotel-label">住宿飯店</b> <a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank">名古屋伏見大和Roynet飯店</a></td></tr>
-        </tbody></table>
-        <div class="total-cost">★(車資總金額=¥1560)</div>
-    </div>
-    <div id="day6" class="tab-content day6">
-        <h2>2026年2月10日(二) DAY6 AEON常滑+Costco</h2>
-        <table><tbody>
-            <tr><td>09:00~</td><td>&nbsp;</td><td>市區最後衝刺</td><td>&nbsp;</td><td>可買<a href="https://maps.app.goo.gl/vQhADwa2n7MgBDBJ9" target="_blank">小雞蛋糕</a> 09:00</td></tr>
-            <tr><td>11:40~12:00</td><td>&nbsp;</td><td>回飯店拿行李</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-            <tr><td>12:30~13:30</td><td>¥1150</td><td><a href="https://www.google.com/maps/search/?api=1&query=東橫INN中部國際機場1" target="_blank">東橫INN飯店</a>寄放行李</td><td>東山線→名城線→名鐵特急</td><td>&nbsp;</td></tr>
-            <tr><td>14:00~14:30</td><td>¥230</td><td><a href="https://www.google.com/maps/search/?api=1&query=Costco常滑" target="_blank">Costco好市多</a>+<a href="https://www.google.com/maps/search/?api=1&query=AEON+Mall常滑" target="_blank">AEON</a></td><td>→名鐵機場線 →</td><td>&nbsp;</td></tr>
-            <tr><td>20:30~21:00</td><td>¥230</td><td>回飯店</td><td>名鐵特急 →</td><td>&nbsp;</td></tr>
-            <tr><td colspan="5"><b class="hotel-label">住宿飯店</b> <a href="https://www.google.com/maps/search/?api=1&query=東橫INN中部國際機場1" target="_blank">中部國際機場東橫INN</a></td></tr>
-        </tbody></table>
-        <div class="total-cost">★(車資總金額=¥1610)</div>
-    </div>
-    <div id="day7" class="tab-content day7">
-        <h2>2026年2月11日(三) DAY7 機場掃貨</h2>
-        <table><tbody>
-            <tr><td>10:00~</td><td>-</td><td><a href="https://www.google.com/maps/search/?api=1&query=中部國際機場" target="_blank">逛中部國際機場</a></td><td>機場巴士或步行</td><td>&nbsp;</td></tr>
-            <tr><td>13:00~</td><td>-</td><td>出境採買</td><td>&nbsp;</td><td>星宇-第1航廈 I櫃台</td></tr>
-            <tr><td>14:55~17:30</td><td>-</td><td><a href="https://www.google.com/maps/search/?api=1&query=桃園機場第二航廈" target="_blank">桃園機場第二航廈</a></td><td>星宇航空</td><td>&nbsp;</td></tr>
-            <tr><td>19:00~20:00</td><td>-</td><td>溫暖的家</td><td>開車</td><td>&nbsp;</td></tr>
-            <tr><td colspan="5"><b class="hotel-label">住宿飯店</b> 溫暖的家</td></tr>
-        </tbody></table>
-        <div class="total-cost">★(車資總金額=¥0)</div>
-    </div>
+    <!-- DAY 1 -->
+    <section class="section-card" id="day1">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-badge">DAY 1</span>
+          <h2 class="day-heading">2026年2月5日 (四) 起手式 + 市區逛街</h2>
+        </div>
+        <div class="cost-summary">車資總計: ¥1,150 | 西瓜卡加值 ¥6,000</div>
+      </div>
 
-    <!-- Card Layout Tabs -->
-    <div id="food" class="tab-content default-color">
-        <h2>美食推薦 🍙🍚</h2>
-        <h3>早餐🥪</h3>
-        <div class="card-grid">
-            <div class="card"><div class="card-header"><span class="card-icon">☕</span><div><div class="card-title">Cook Town</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/AQ5a97RKuCjdBqtM8" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">☕</span><div><div class="card-title">客美多</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/3rxe6TSafRXttzga6" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🍔</span><div><div class="card-title">摩斯漢堡</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/MsFu61hapWB1enSF7" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">☕</span><div><div class="card-title">Doutor</div><div class="card-subtitle">平日6:45 假日7:50</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/crYVBSW9JYkN6bwGA" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">☕</span><div><div class="card-title">KAKO柳橋店</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/ubDnRg82RsR5PEPL6" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🍚</span><div><div class="card-title">吉野家</div><div class="card-subtitle">04:00營業-早餐套餐</div></div></div><div class="card-footer"><a href="https://www.google.com/maps/search/?api=1&query=吉野家" target="_blank" class="card-button">查看地圖</a></div></div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 23:30 ~ 00:20</span>
+              <span class="trans-badge"><i class="fa-solid fa-car"></i> 開車</span>
+            </div>
+            <div class="spot-title">
+              桃園機場 (第一航廈)
+              <a href="https://www.google.com/maps/search/?api=1&query=桃園機場第一航廈" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+          </div>
         </div>
-        <h3>燒肉🥩</h3>
-        <div class="card-grid">
-            <div class="card"><div class="card-header"><span class="card-icon">🥩</span><div><div class="card-title">焼肉松屋 犬山城</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/GeMuG5WS8jYYotvEA" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🥩</span><div><div class="card-title">Niku-no-Yoichi</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/sPLDQSj7rxSnzEk48" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🥩</span><div><div class="card-title">炭火焼肉 伏見屋 飛騨牛 別邸</div></div></div><div class="card-footer"><a href="https://vialife.tw/21514/" target="_blank" class="card-button">介紹</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🥩</span><div><div class="card-title">Amiyakitei Sakae</div><div class="card-subtitle">吃到飽</div></div></div><div class="card-footer"><a href="https://tinachiang0824.pixnet.net/blog/post/577493916" target="_blank" class="card-button">介紹</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🥩</span><div><div class="card-title">燒肉的和民 名站店</div><div class="card-subtitle">吃到飽</div></div></div><div class="card-footer"><a href="https://sunnylife.tw/kazumin/" target="_blank" class="card-button">介紹</a></div></div>
-        </div>
-        <h3>鰻魚飯🍱</h3>
-        <div class="card-grid">
-            <div class="card"><div class="card-header"><span class="card-icon">🍱</span><div><div class="card-title">ひつまぶし稲生</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/QUEKmJ7oYj6XB8vN6" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🍱</span><div><div class="card-title">うなぎのうな泰 錦店</div><div class="card-subtitle">CP值高</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/ohVxn8upfLHtPwTY6" target="_blank" class="card-button">查看地圖</a></div></div>
-        </div>
-         <h3>其他推薦</h3>
-        <div class="card-grid">
-            <div class="card"><div class="card-header"><span class="card-icon">🍖</span><div><div class="card-title">馬力屋燒肉</div><div class="card-subtitle">名古屋車站北側 走路約20分鐘</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/nMm1xVrvTpi8ZmUPA" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🍳</span><div><div class="card-title">Yellow Noritakeshinmachi</div><div class="card-subtitle">漢堡排+蛋包飯</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/3Fs2bT7rQ7BzLNF77" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🥪</span><div><div class="card-title">Konparu Osu</div><div class="card-subtitle">炸蝦三明治</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/ipnJiygwjzHomgpFA" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🍜</span><div><div class="card-title">麵家獅子丸</div><div class="card-subtitle">名古屋車站北側 走路約6分鐘</div></div></div><div class="card-footer"><a href="https://maps.app.goo.gl/XECare2C8nyrCFae7" target="_blank" class="card-button">查看地圖</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🍰</span><div><div class="card-title">HARBS千層蛋糕</div></div></div><div class="card-footer"><a href="https://www.google.com/maps/search/?api=1&query=HARBS蛋糕" target="_blank" class="card-button">尋找分店</a></div></div>
-        </div>
-    </div>
-    <div id="shopping" class="tab-content default-color">
-        <h2>購物清單 🧵</h2>
-        <h3>雜貨 / 藥妝</h3>
-        <div class="card-grid">
-            <div class="card"><div class="card-header"><span class="card-icon">🧴</span><div><div class="card-title">大創噴油瓶</div></div></div><div class="card-body"><span class="price">¥330</span></div><div class="card-footer"><a href="https://jp.daisonet.com/products/4550480572611" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🔧</span><div><div class="card-title">DAISO萬用套筒</div></div></div><div class="card-body"><span class="price">¥330</span></div><div class="card-footer"><a href="https://jp.daisonet.com/products/4549131947038" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🔌</span><div><div class="card-title">大創旋轉延長線</div></div></div><div class="card-body"><span class="price">¥1100</span></div><div class="card-footer"><a href="https://newsatcl-pctr.c.yimg.jp/dk/expert-image/yunikohyakkinsuriko/article/01678986/image-1708756752058.jpeg?fill=1&fc=fff&exp=10800" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🔌</span><div><div class="card-title">3coins旋轉延長線</div></div></div><div class="card-body"><span class="price">¥1200</span></div><div class="card-footer"><a href="https://scontent-tpe1-1.cdninstagram.com/v/t51.2885-15/353234075_17917178793114721_5399384157629027747_n.jpg" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🧹</span><div><div class="card-title">3coins電動清潔刷</div></div></div><div class="card-body"><span class="price">¥1650</span></div><div class="card-footer"><a href="https://www.palcloset.jp/display/item/2324-23H3348-00/?cl=11&b=3coins&ss=" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">💦</span><div><div class="card-title">大創防水噴霧</div></div></div><div class="card-body"><span class="price">¥110</span></div><div class="card-footer"><a href="https://jp.daisonet.com/products/4964549032983?_pos=1&_sid=062e1b11d&_ss=r" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">💦</span><div><div class="card-title">無印良品防水噴霧</div></div></div><div class="card-body"><span class="price">¥790</span></div><div class="card-footer"><a href="https://www.muji.com/jp/ja/store/cmdty/detail/4550182202976" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🧴</span><div><div class="card-title">yuskin 滋潤保濕修護霜</div><div class="card-subtitle">DONKI (120g)</div></div></div><div class="card-body"><span class="price">$229</span></div><div class="card-footer"><a href="https://www.yuskin.com.tw/yuskin/" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">💨</span><div><div class="card-title">Fasoul Q1 pro</div><div class="card-subtitle">DONKI</div></div></div><div class="card-footer"><a href="https://www.facebook.com/p/Fasoul-Japan-61560086858851/" target="_blank" class="card-button">查看商品</a></div></div>
-        </div>
-        <h3>BIC CAMERA 必買</h3>
-        <div class="card-grid">
-            <div class="card"><div class="card-header"><span class="card-icon">🧵</span><div><div class="card-title">縫紉線</div><div class="card-subtitle">BIC CAMERA</div></div></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🪒</span><div><div class="card-title">飛利浦刮鬍刀</div><div class="card-subtitle">BIC CAMERA</div></div></div><div class="card-body"><span class="price">¥22640</span></div><div class="card-footer"><a href="https://www.biccamera.com/bc/tenpo/SfrBcToriokiList.jsp?GOODS_NO=10729901" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🪒</span><div><div class="card-title">國際牌刮鬍刀 (ES-L321W)</div><div class="card-subtitle">BIC CAMERA</div></div></div><div class="card-body"><span class="price">¥10080</span></div><div class="card-footer"><a href="https://www.biccamera.com/bc/item/14290700/" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">💆</span><div><div class="card-title">肩頸低周波 MT-DRHN21B</div><div class="card-subtitle">BIC CAMERA</div></div></div><div class="card-body"><span class="price">¥14460-14960</span></div><div class="card-footer"><a href="https://www.biccamera.com/bc/item/11239564/" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🍳</span><div><div class="card-title">TOSHIBA ER-D3000B 水波爐</div><div class="card-subtitle">BIC CAMERA</div></div></div><div class="card-body"><span class="price">¥57,480</span></div><div class="card-footer"><a href="https://www.biccamera.com/bc/item/14009643/" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">✨</span><div><div class="card-title">COGIT NOPO粉刺清潔器</div><div class="card-subtitle">BIC CAMERA</div></div></div><div class="card-body"><span class="price">¥1190</span></div><div class="card-footer"><a href="https://www.biccamera.com/bc/item/12913991/" target="_blank" class="card-button">查看商品</a></div></div>
-        </div>
-        <h3>食品 / 超市</h3>
-        <div class="card-grid">
-            <div class="card"><div class="card-header"><span class="card-icon">🍪</span><div><div class="card-title">Sugar Butter Tree「西尾抹茶夾心餅乾」</div></div></div><div class="card-footer"><a href="https://farm66.static.flickr.com/65535/53717960063_aafb8eaab8_b.jpg" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🧂</span><div><div class="card-title">堀西戶外萬用香料調味料</div><div class="card-subtitle">Costco (250g大罐)</div></div></div><div class="card-body"><span class="price">¥1280</span></div><div class="card-footer"><a href="https://cdn.store-assets.com/s/978081/i/39211057.jpeg" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🍤</span><div><div class="card-title">天華 天婦羅花</div><div class="card-subtitle">超市</div></div></div><div class="card-body"><span class="price">約¥300</span></div><div class="card-footer"><a href="https://thefabulouslifestyles.com/static/f4cfc5b45d6ae1e377384bb56a52b159/8e1fc/13-takoyaki.jpg" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🥬</span><div><div class="card-title">日本愛菜果蔬果保鮮袋</div><div class="card-subtitle">超市</div></div></div><div class="card-footer"><a href="https://cdn.cybassets.com/media/W1siZiIsIjIxNDI3L3Byb2R1Y3RzLzM4MDA1Mzk0LzE2NjM3MjQ0NzVfODg3ODNlNDcwMTEwZGRkZWZmMWMuanBlZyJdLFsicCIsInRodW1iIiwiNjAweDYwMCJdXQ.jpeg?sha=272af38456ccf2b6" target="_blank" class="card-button">查看商品</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🧼</span><div><div class="card-title">獅王Magica速乾洗碗精</div><div class="card-subtitle">超市</div></div></div><div class="card-body"><span class="price">220ml $44 / 710ml $109</span></div><div class="card-footer"><a href="https://online.carrefour.com.tw/on/demandware.static/-/Sites-carrefour-tw-m-inner/default/dw799c2790/images/large/1105019600101.jpg" target="_blank" class="card-button">查看商品</a></div></div>
-        </div>
-    </div>
-    <div id="coupons" class="tab-content default-color">
-        <h2>優惠券 Coupon 🎁</h2>
-        <div class="card-grid">
-            <div class="card"><div class="card-header"><span class="card-icon">🛒</span><div><div class="card-title">AEON</div></div></div><div class="card-footer"><a href="https://www.welcome-aeon.com/coupon/?lang=zh-CHT" target="_blank" class="card-button">領取優惠</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">💡</span><div><div class="card-title">愛電王 EDION</div></div></div><div class="card-footer"><a href="https://www.edion.com/ito/contents/special/dutyfreeshop/180327dtnbr/img/coupon_ticket_pc.png" target="_blank" class="card-button">領取優惠</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">📷</span><div><div class="card-title">BIC CAMERA</div></div></div><div class="card-footer"><a href="https://www.taxfreeshops.jp/img/tieup2/coupon_zhtw.jpg?202208" target="_blank" class="card-button">領取優惠</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🎿</span><div><div class="card-title">Alpen NAGOYA</div></div></div><div class="card-footer"><a href="https://d1grca2t3zpuug.cloudfront.net/2025/05/alpencoupon2025-2480x1791.webp" target="_blank" class="card-button">領取優惠</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">📁</span><div><div class="card-title">名古屋優惠券 (Drive)</div></div></div><div class="card-footer"><a href="https://drive.google.com/drive/folders/1L5oSOAmZLUPEaUEnK2gc9NJ-oLYjAOfL" target="_blank" class="card-button">領取優惠</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🐧</span><div><div class="card-title">唐吉訶德</div></div></div><div class="card-footer"><a href="https://japanportal.donki-global.com/coupon/cp001_zhtw.html" target="_blank" class="card-button">領取優惠</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🏬</span><div><div class="card-title">名鐵百貨</div></div></div><div class="card-footer"><a href="https://www.callingtaiwan.com.tw/wp-content/uploads/2025/10/meitetsu_department_store_coupon2026-1229x1536.jpg" target="_blank" class="card-button">領取優惠</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">🏬</span><div><div class="card-title">松坂屋百貨</div></div></div><div class="card-footer"><a href="https://drive.google.com/file/d/1FwIbRxPY6-cqhlFxG2Nw6cl05yJ6m0Wo/view" target="_blank" class="card-button">領取優惠</a></div></div>
-            <div class="card"><div class="card-header"><span class="card-icon">💊</span><div><div class="card-title">SUGI藥妝</div></div></div><div class="card-footer"><a href="https://www.callingtaiwan.com.tw/wp-content/uploads/2025/02/sugi_coupon_2025.png" target="_blank" class="card-button">領取優惠</a></div></div>
-        </div>
-    </div>
 
-</div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 02:55 ~ 06:25</span>
+              <span class="trans-badge"><i class="fa-solid fa-plane"></i> 樂桃航空</span>
+            </div>
+            <div class="spot-title">
+              中部國際機場 (第一航廈)
+              <a href="https://www.google.com/maps/search/?api=1&query=中部國際機場第一航廈" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+            <div class="timeline-note"><i class="fa-solid fa-utensils"></i> 機場享用早餐</div>
+          </div>
+        </div>
 
-<!-- Video Control Script -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const overlay = document.getElementById('intro-overlay');
-        const video = document.getElementById('intro-video');
-        const skipButton = document.getElementById('skip-button');
-        const mainContent = document.getElementById('main-content');
-        const body = document.body;
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 08:00 ~ 09:00</span>
+              <span class="fare-badge">¥1,150</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 名鐵特急 → 名城線 → 東山線 7號出口</span>
+            </div>
+            <div class="spot-title">飯店寄放行李</div>
+            <div class="timeline-note">
+              <a href="https://trainbus.meitetsu.co.jp/meitetsu-transfer-zh-tw/pc/diagram/TrainDiagram?startId=00009406&linkId=00001057&direction=up&rule=&datetime=2026-02-05" target="_blank" class="action-link"><i class="fa-solid fa-calendar-check"></i> 名鐵列車時刻表 (急行)</a>
+            </div>
+          </div>
+        </div>
 
-        function endIntro() {
-            overlay.style.opacity = '0';
-            body.style.overflow = 'auto'; // Restore scrollbars
-            setTimeout(() => {
-                overlay.classList.add('hidden');
-                mainContent.classList.remove('hidden');
-            }, 800); 
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 09:30 ~</span>
+            </div>
+            <div class="spot-title">
+              名古屋科學館 + 市區逛街
+              <a href="https://www.google.com/maps/search/?api=1&query=名古屋科學館" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+            <div class="timeline-note">🎟️ 科學館門票 ¥400</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 20:00 ~ 20:30</span>
+            </div>
+            <div class="spot-title">飯店 Check-in</div>
+            <div class="timeline-note" style="color: var(--accent); font-weight: 600;"><i class="fa-solid fa-star"></i> 重要任務：記得購買防水噴霧</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-bar">
+        <i class="fa-solid fa-bed"></i>
+        <span>住宿：<a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank" style="text-decoration: underline;">名古屋伏見大和Roynet飯店</a></span>
+      </div>
+    </section>
+
+    <!-- DAY 2 -->
+    <section class="section-card" id="day2">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-badge">DAY 2</span>
+          <h2 class="day-heading">2026年2月6日 (五) 飛驒高山 + 白川鄉合掌村</h2>
+        </div>
+        <div class="cost-summary">車資總計: ¥420</div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 08:20 ~ 08:35</span>
+              <span class="fare-badge">¥210</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 東山線 E5號出口</span>
+            </div>
+            <div class="spot-title">
+              Ministop 集合
+              <a href="https://maps.app.goo.gl/SpXASCwVWwccL35s7" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 09:00 ~ 18:30</span>
+              <span class="fare-badge">NT$ 1,300</span>
+              <span class="trans-badge"><i class="fa-solid fa-bus"></i> 一日遊覽車</span>
+            </div>
+            <div class="spot-title">高山老街 + 白川鄉合掌村一日遊</div>
+            <div class="timeline-note">
+              <a href="https://www.kkday.com/zh-tw/product/135964" target="_blank" class="action-link"><i class="fa-solid fa-ticket"></i> KKDAY 行程連結</a>
+              <span>午餐於高山自理</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 19:00 ~</span>
+            </div>
+            <div class="spot-title">
+              名古屋車站周邊
+              <a href="https://www.google.com/maps/search/?api=1&query=名古屋車站" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 名站地圖</a>
+            </div>
+            <div class="timeline-note">
+              <a href="https://www.google.com/maps/search/?api=1&query=名古屋車站晚餐" target="_blank" class="action-link"><i class="fa-solid fa-utensils"></i> 晚餐推薦</a>
+              <a href="https://maps.app.goo.gl/BEsFV27nSH9sxcs29" target="_blank" class="action-link"><i class="fa-solid fa-prescription-bottle-medical"></i> 千里馬藥局</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 21:00 ~ 21:30</span>
+              <span class="fare-badge">¥210</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 東山線</span>
+            </div>
+            <div class="spot-title">返回飯店</div>
+            <div class="timeline-note">超商順便採買隔日早餐 🥪</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-bar">
+        <i class="fa-solid fa-bed"></i>
+        <span>住宿：<a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank" style="text-decoration: underline;">名古屋伏見大和Roynet飯店</a></span>
+      </div>
+    </section>
+
+    <!-- DAY 3 -->
+    <section class="section-card" id="day3">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-badge">DAY 3</span>
+          <h2 class="day-heading">2026年2月7日 (六) 御在所岳雪景與樹冰</h2>
+        </div>
+        <div class="cost-summary">車資總計: ¥4,020 (不含纜車)</div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 07:01 ~ 07:20</span>
+              <span class="fare-badge">¥210</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 東山線 7號出口</span>
+            </div>
+            <div class="spot-title">
+              名鐵巴士中心 (3F 2號月台)
+              <a href="https://www.google.com/maps/search/?api=1&query=名鐵巴士中心" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 07:48 ~ 09:05</span>
+              <span class="fare-badge">¥1,800</span>
+              <span class="trans-badge"><i class="fa-solid fa-bus"></i> 直達巴士 (現場購票 07:55 / 08:45)</span>
+            </div>
+            <div class="spot-title">前往御在所纜車前</div>
+            <div class="timeline-note">
+              <a href="https://www.sanco.co.jp/krs/search/result?lang=zh-TW&dep=1041&arr=2107&timecd=1&date=2026-02-07&time=07%3A31" target="_blank" class="action-link"><i class="fa-solid fa-bus-simple"></i> 三重交通巴士班次</a>
+              <a href="https://www.gozaisho.co.jp/" target="_blank" class="action-link"><i class="fa-solid fa-circle-exclamation"></i> 官方營運狀況查詢</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 09:15 ~ 09:35</span>
+              <span class="fare-badge">¥2,600 (來回)</span>
+              <span class="trans-badge"><i class="fa-solid fa-cable-car"></i> 御在所纜車 + 山頂纜車 ¥700</span>
+            </div>
+            <div class="spot-title">御在所公園玩雪、賞樹冰</div>
+            <div class="timeline-note">
+              <a href="https://www.gozaisho.co.jp/highlight/summit/#map" target="_blank" class="action-link"><i class="fa-solid fa-map"></i> 山頂地圖</a>
+              <a href="https://www.agoda.com/zh-tw/activities/detail?activityId=1034434" target="_blank" class="action-link"><i class="fa-solid fa-ticket"></i> AGODA 預購門票</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 14:44 ~ 15:55</span>
+              <span class="fare-badge">¥1,800</span>
+              <span class="trans-badge"><i class="fa-solid fa-bus"></i> 直達巴士 (14:44 / 16:44)</span>
+            </div>
+            <div class="spot-title">返回名古屋車站</div>
+            <div class="timeline-note">
+              <a href="https://japantravel.navitime.com/zh-tw/area/jp/route?start=00008576&start_name=%E5%90%8D%E5%8F%A4%E5%B1%8B&goal=00542560" target="_blank" class="action-link"><i class="fa-solid fa-route"></i> 路線時刻</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 21:30 ~ 21:45</span>
+              <span class="fare-badge">¥210</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 東山線</span>
+            </div>
+            <div class="spot-title">回飯店 + 洗衣整理</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-bar">
+        <i class="fa-solid fa-bed"></i>
+        <span>住宿：<a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank" style="text-decoration: underline;">名古屋伏見大和Roynet飯店</a></span>
+      </div>
+    </section>
+
+    <!-- DAY 4 -->
+    <section class="section-card" id="day4">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-badge">DAY 4</span>
+          <h2 class="day-heading">2026年2月8日 (日) 三井 Outlet 爵士之夢長島 / 岡崎</h2>
+        </div>
+        <div class="cost-summary">車資總計: ¥2,910</div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 07:30 ~ 07:45</span>
+            </div>
+            <div class="spot-title">名鐵巴士中心</div>
+            <div class="timeline-note"><i class="fa-solid fa-mug-saucer"></i> Cook Town 享用早餐</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 09:00 ~ 09:50</span>
+              <span class="fare-badge">¥1,350</span>
+              <span class="trans-badge"><i class="fa-solid fa-bus"></i> 直達巴士 (4F 22號月台)</span>
+            </div>
+            <div class="spot-title">
+              三井 Outlet Park 爵士之夢長島
+              <a href="https://www.google.com/maps/search/?api=1&query=三井outlet+park+爵士之夢長島" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+            <div class="timeline-note">
+              <a href="https://mitsui-shopping-park.com/mop/nagashima/tw/access/#access01" target="_blank" class="action-link"><i class="fa-solid fa-circle-info"></i> 交通攻略指南</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 16:00 ~ 16:55</span>
+              <span class="fare-badge">¥1,350</span>
+              <span class="trans-badge"><i class="fa-solid fa-bus"></i> 直達巴士</span>
+            </div>
+            <div class="spot-title">返回名古屋車站</div>
+            <div class="timeline-note">
+              <a href="https://www.sanco.co.jp/krs/search/result?arr=1041&date=2026-02-08&dep=1051&lang=zh-TW&offset=8&timecd=1" target="_blank" class="action-link"><i class="fa-solid fa-bus-simple"></i> 回程巴士時刻</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 21:15 ~ 21:30</span>
+              <span class="fare-badge">¥210</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 東山線</span>
+            </div>
+            <div class="spot-title">返回飯店休息</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-bar">
+        <i class="fa-solid fa-bed"></i>
+        <span>住宿：<a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank" style="text-decoration: underline;">名古屋伏見大和Roynet飯店</a></span>
+      </div>
+    </section>
+
+    <!-- DAY 5 -->
+    <section class="section-card" id="day5">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-badge">DAY 5</span>
+          <h2 class="day-heading">2026年2月9日 (一) 犬山城下町洗錢 + MOZO Wonder City</h2>
+        </div>
+        <div class="cost-summary">車資總計: ¥1,560</div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 09:00 ~ 10:00</span>
+              <span class="fare-badge">¥750</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 鶴舞線 → 名鐵犬山線</span>
+            </div>
+            <div class="spot-title">
+              Workman plus+ 犬山店
+              <a href="https://www.google.com/maps/search/?api=1&query=Workman+plus+犬山" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 11:30 ~ 12:00</span>
+            </div>
+            <div class="spot-title">
+              犬山城下町 (三光稻荷神社洗錢)
+              <a href="https://www.google.com/maps/search/?api=1&query=犬山城下町" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 15:00 ~ 15:40</span>
+              <span class="fare-badge">¥570</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 名鐵犬山線</span>
+            </div>
+            <div class="spot-title">
+              MOZO Wonder City (AEON 大型購物中心)
+              <a href="https://www.google.com/maps/search/?api=1&query=MOZO+Wonder+City" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 21:15 ~ 21:30</span>
+              <span class="fare-badge">¥240</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 鶴舞線</span>
+            </div>
+            <div class="spot-title">返回飯店 + 洗衣</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-bar">
+        <i class="fa-solid fa-bed"></i>
+        <span>住宿：<a href="https://www.google.com/maps/search/?api=1&query=名古屋伏見大和Roynet飯店" target="_blank" style="text-decoration: underline;">名古屋伏見大和Roynet飯店</a></span>
+      </div>
+    </section>
+
+    <!-- DAY 6 -->
+    <section class="section-card" id="day6">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-badge">DAY 6</span>
+          <h2 class="day-heading">2026年2月10日 (二) AEON 常滑 + Costco 採買</h2>
+        </div>
+        <div class="cost-summary">車資總計: ¥1,610</div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 09:00 ~</span>
+            </div>
+            <div class="spot-title">市區最後衝刺</div>
+            <div class="timeline-note">
+              <a href="https://maps.app.goo.gl/vQhADwa2n7MgBDBJ9" target="_blank" class="action-link"><i class="fa-solid fa-cake-candles"></i> 必買：小雞蛋糕 (09:00 開賣)</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 11:40 ~ 12:00</span>
+            </div>
+            <div class="spot-title">回飯店取行李退房</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 12:30 ~ 13:30</span>
+              <span class="fare-badge">¥1,150</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 東山線 → 名城線 → 名鐵特急</span>
+            </div>
+            <div class="spot-title">
+              東橫 INN 中部國際機場 寄放行李
+              <a href="https://www.google.com/maps/search/?api=1&query=東橫INN中部國際機場1" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 14:00 ~ 14:30</span>
+              <span class="fare-badge">¥230</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 名鐵機場線</span>
+            </div>
+            <div class="spot-title">Costco 常滑 + AEON Mall 常滑 採購</div>
+            <div class="timeline-note">
+              <a href="https://www.google.com/maps/search/?api=1&query=Costco常滑" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> Costco</a>
+              <a href="https://www.google.com/maps/search/?api=1&query=AEON+Mall常滑" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> AEON 常滑</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 20:30 ~ 21:00</span>
+              <span class="fare-badge">¥230</span>
+              <span class="trans-badge"><i class="fa-solid fa-train-subway"></i> 名鐵特急</span>
+            </div>
+            <div class="spot-title">返回東橫 INN 辦理入住</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-bar">
+        <i class="fa-solid fa-bed"></i>
+        <span>住宿：<a href="https://www.google.com/maps/search/?api=1&query=東橫INN中部國際機場1" target="_blank" style="text-decoration: underline;">中部國際機場東橫 INN 1</a></span>
+      </div>
+    </section>
+
+    <!-- DAY 7 -->
+    <section class="section-card" id="day7">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-badge">DAY 7</span>
+          <h2 class="day-heading">2026年2月11日 (三) 機場掃貨 + 返台平安歸賦</h2>
+        </div>
+        <div class="cost-summary">車資總計: ¥0</div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 10:00 ~</span>
+              <span class="trans-badge"><i class="fa-solid fa-person-walking"></i> 機場巴士或步行</span>
+            </div>
+            <div class="spot-title">
+              逛中部國際機場 (FLIGHT OF DREAMS / 展望台)
+              <a href="https://www.google.com/maps/search/?api=1&query=中部國際機場" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 機場地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 13:00 ~</span>
+            </div>
+            <div class="spot-title">星宇航空報到 + 出境免稅店採買</div>
+            <div class="timeline-note"><i class="fa-solid fa-plane-departure"></i> 星宇航空 - 第1航廈 I 櫃台</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 14:55 ~ 17:30</span>
+              <span class="trans-badge"><i class="fa-solid fa-plane"></i> 星宇航空</span>
+            </div>
+            <div class="spot-title">
+              抵達桃園機場 (第二航廈)
+              <a href="https://www.google.com/maps/search/?api=1&query=桃園機場第二航廈" target="_blank" class="action-link"><i class="fa-solid fa-location-dot"></i> 地圖</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="time-badge"><i class="fa-regular fa-clock"></i> 19:00 ~ 20:00</span>
+              <span class="trans-badge"><i class="fa-solid fa-car"></i> 開車</span>
+            </div>
+            <div class="spot-title">返回溫暖的家 🏠</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 美食推薦 -->
+    <section class="section-card" id="food">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-badge" style="background: #ea580c;"><i class="fa-solid fa-utensils"></i></span>
+          <h2 class="day-heading">名古屋精選美食清單</h2>
+        </div>
+      </div>
+
+      <!-- 早餐 -->
+      <h3 class="category-subheading">🥪 經典特色早餐</h3>
+      <div class="grid-cards">
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">☕</div>
+            <div>
+              <div class="card-name">Cook Town</div>
+              <div class="card-subtext">經典吐司蛋早餐</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>名站周邊</span>
+            <a href="https://maps.app.goo.gl/AQ5a97RKuCjdBqtM8" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">☕</div>
+            <div>
+              <div class="card-name">客美多 Komeda</div>
+              <div class="card-subtext">點咖啡送烤土司</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>連鎖名店</span>
+            <a href="https://maps.app.goo.gl/3rxe6TSafRXttzga6" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🍔</div>
+            <div>
+              <div class="card-name">摩斯漢堡</div>
+              <div class="card-subtext">日本限定朝食</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>快速便利</span>
+            <a href="https://maps.app.goo.gl/MsFu61hapWB1enSF7" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">☕</div>
+            <div>
+              <div class="card-name">Doutor 羅多倫</div>
+              <div class="card-subtext">平日 06:45 / 假日 07:50</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>早鳥首選</span>
+            <a href="https://maps.app.goo.gl/crYVBSW9JYkN6bwGA" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">☕</div>
+            <div>
+              <div class="card-name">KAKO 柳橋店</div>
+              <div class="card-subtext">四色自製果醬鮮奶油吐司</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>超人氣名店</span>
+            <a href="https://maps.app.goo.gl/ubDnRg82RsR5PEPL6" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🍚</div>
+            <div>
+              <div class="card-name">吉野家</div>
+              <div class="card-subtext">04:00 營業日式朝定食</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>平價熱食</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=吉野家" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 尋找分店</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 燒肉 -->
+      <h3 class="category-subheading">🥩 人氣燒肉</h3>
+      <div class="grid-cards">
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🥩</div>
+            <div>
+              <div class="card-name">焼肉松屋 犬山城</div>
+              <div class="card-subtext">犬山必吃</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>犬山城下町</span>
+            <a href="https://maps.app.goo.gl/GeMuG5WS8jYYotvEA" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🥩</div>
+            <div>
+              <div class="card-name">Niku-no-Yoichi</div>
+              <div class="card-subtext">大釜飯與鮮切燒肉</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>人氣推薦</span>
+            <a href="https://maps.app.goo.gl/sPLDQSj7rxSnzEk48" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🥩</div>
+            <div>
+              <div class="card-name">炭火焼肉 伏見屋 飛騨牛 別邸</div>
+              <div class="card-subtext">高級飛驒牛專門</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>伏見站</span>
+            <a href="https://vialife.tw/21514/" target="_blank" class="action-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> 食記介紹</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🥩</div>
+            <div>
+              <div class="card-name">Amiyakitei Sakae</div>
+              <div class="card-subtext">高品質國產牛吃到飽</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>榮商圈</span>
+            <a href="https://tinachiang0824.pixnet.net/blog/post/577493916" target="_blank" class="action-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> 食記介紹</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🥩</div>
+            <div>
+              <div class="card-name">燒肉的和民 名站店</div>
+              <div class="card-subtext">送餐軌道 + 燒肉吃到飽</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>名站周邊</span>
+            <a href="https://sunnylife.tw/kazumin/" target="_blank" class="action-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> 食記介紹</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 鰻魚飯 & 其他 -->
+      <h3 class="category-subheading">🍱 鰻魚飯三吃與排隊美食</h3>
+      <div class="grid-cards">
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🍱</div>
+            <div>
+              <div class="card-name">ひつまぶし稲生</div>
+              <div class="card-subtext">名站地下街老字號鰻魚飯</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>必吃三吃</span>
+            <a href="https://maps.app.goo.gl/QUEKmJ7oYj6XB8vN6" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🍱</div>
+            <div>
+              <div class="card-name">うなぎのうな泰 錦店</div>
+              <div class="card-subtext">高 CP 值平價鰻魚飯</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>超值推薦</span>
+            <a href="https://maps.app.goo.gl/ohVxn8upfLHtPwTY6" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🍖</div>
+            <div>
+              <div class="card-name">馬力屋燒肉</div>
+              <div class="card-subtext">名古屋車站北側 步行約20分</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>內行在地</span>
+            <a href="https://maps.app.goo.gl/nMm1xVrvTpi8ZmUPA" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🍳</div>
+            <div>
+              <div class="card-name">Yellow Noritakeshinmachi</div>
+              <div class="card-subtext">招牌漢堡排 + 流心蛋包飯</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>則武之森</span>
+            <a href="https://maps.app.goo.gl/3Fs2bT7rQ7BzLNF77" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🥪</div>
+            <div>
+              <div class="card-name">Konparu (コンパル) 大須</div>
+              <div class="card-subtext">爆餡炸蝦三明治名店</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>大須商店街</span>
+            <a href="https://maps.app.goo.gl/ipnJiygwjzHomgpFA" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🍜</div>
+            <div>
+              <div class="card-name">麵家獅子丸</div>
+              <div class="card-subtext">名站北側 泡沫系雞白湯拉麵</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>排隊名店</span>
+            <a href="https://maps.app.goo.gl/XECare2C8nyrCFae7" target="_blank" class="action-link"><i class="fa-solid fa-map-pin"></i> 地圖</a>
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-head">
+            <div class="card-icon">🍰</div>
+            <div>
+              <div class="card-name">HARBS 水果千層蛋糕</div>
+              <div class="card-subtext">名古屋發源 必吃甜點</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>本店 / 分店</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=HARBS蛋糕" target="_blank" class="action-link"><i class="fa-solid fa-magnifying-glass"></i> 尋找分店</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 購物清單 (可勾選) -->
+    <section class="section-card" id="shopping">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-badge" style="background: #059669;"><i class="fa-solid fa-cart-shopping"></i></span>
+          <h2 class="day-heading">購物與伴手禮清單 (點擊可打勾完成)</h2>
+        </div>
+      </div>
+
+      <!-- 百元商店與生活雜貨 -->
+      <h3 class="category-subheading">🧴 百元商店 / 雜貨 / 藥妝</h3>
+      <div class="grid-cards">
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🧴</div>
+            <div>
+              <div class="card-name">大創噴油瓶</div>
+              <div class="card-subtext">DAISO 百元好物</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥330</span>
+            <a href="https://jp.daisonet.com/products/4550480572611" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 商品</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🔧</div>
+            <div>
+              <div class="card-name">DAISO 萬用套筒</div>
+              <div class="card-subtext">DIY 實用工具</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥330</span>
+            <a href="https://jp.daisonet.com/products/4549131947038" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 商品</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🔌</div>
+            <div>
+              <div class="card-name">大創旋轉延長線</div>
+              <div class="card-subtext">DAISO 話題商品</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥1,100</span>
+            <a href="https://newsatcl-pctr.c.yimg.jp/dk/expert-image/yunikohyakkinsuriko/article/01678986/image-1708756752058.jpeg?fill=1&fc=fff&exp=10800" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 商品圖</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🔌</div>
+            <div>
+              <div class="card-name">3COINS 旋轉延長線</div>
+              <div class="card-subtext">質感生活配件</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥1,200</span>
+            <a href="https://scontent-tpe1-1.cdninstagram.com/v/t51.2885-15/353234075_17917178793114721_5399384157629027747_n.jpg" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 商品圖</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🧹</div>
+            <div>
+              <div class="card-name">3COINS 電動清潔刷</div>
+              <div class="card-subtext">熱銷清潔神器</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥1,650</span>
+            <a href="https://www.palcloset.jp/display/item/2324-23H3348-00/?cl=11&b=3coins&ss=" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 官網</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">💦</div>
+            <div>
+              <div class="card-name">大創防水噴霧</div>
+              <div class="card-subtext">雪地必備</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥110</span>
+            <a href="https://jp.daisonet.com/products/4964549032983?_pos=1&_sid=062e1b11d&_ss=r" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 商品</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">💦</div>
+            <div>
+              <div class="card-name">無印良品 防水噴霧</div>
+              <div class="card-subtext">MUJI 高效防水</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥790</span>
+            <a href="https://www.muji.com/jp/ja/store/cmdty/detail/4550182202976" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 官網</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🧴</div>
+            <div>
+              <div class="card-name">yuskin 滋潤修護霜</div>
+              <div class="card-subtext">DONKI (120g)</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">約 NT$229</span>
+            <a href="https://www.yuskin.com.tw/yuskin/" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 介紹</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">💨</div>
+            <div>
+              <div class="card-name">Fasoul Q1 pro</div>
+              <div class="card-subtext">DONKI</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>唐吉訶德</span>
+            <a href="https://www.facebook.com/p/Fasoul-Japan-61560086858851/" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 專頁</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BIC CAMERA -->
+      <h3 class="category-subheading">📷 BIC CAMERA 電器與用品</h3>
+      <div class="grid-cards">
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🧵</div>
+            <div>
+              <div class="card-name">縫紉線</div>
+              <div class="card-subtext">BIC CAMERA</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>手工藝專區</span>
+            <span class="action-link"><i class="fa-solid fa-tag"></i> 採購</span>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🪒</div>
+            <div>
+              <div class="card-name">飛利浦電鬍刀</div>
+              <div class="card-subtext">BIC CAMERA</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥22,640</span>
+            <a href="https://www.biccamera.com/bc/tenpo/SfrBcToriokiList.jsp?GOODS_NO=10729901" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 庫存</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🪒</div>
+            <div>
+              <div class="card-name">國際牌刮鬍刀 (ES-L321W)</div>
+              <div class="card-subtext">Panasonic</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥10,080</span>
+            <a href="https://www.biccamera.com/bc/item/14290700/" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 官網</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">💆</div>
+            <div>
+              <div class="card-name">肩頸低周波 MT-DRHN21B</div>
+              <div class="card-subtext">舒緩按摩神器</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥14,460~14,960</span>
+            <a href="https://www.biccamera.com/bc/item/11239564/" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 官網</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🍳</div>
+            <div>
+              <div class="card-name">TOSHIBA ER-D3000B 水波爐</div>
+              <div class="card-subtext">東芝人氣旗艦款</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥57,480</span>
+            <a href="https://www.biccamera.com/bc/item/14009643/" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 官網</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">✨</div>
+            <div>
+              <div class="card-name">COGIT NOPO 粉刺清潔器</div>
+              <div class="card-subtext">美妝保養話題款</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥1,190</span>
+            <a href="https://www.biccamera.com/bc/item/12913991/" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-eye"></i> 官網</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 超市 / 食品 -->
+      <h3 class="category-subheading">🍪 超市 / Costco 必買美食</h3>
+      <div class="grid-cards">
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🍪</div>
+            <div>
+              <div class="card-name">Sugar Butter Tree 西尾抹茶夾心</div>
+              <div class="card-subtext">名古屋限定伴手禮</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>限定必買</span>
+            <a href="https://farm66.static.flickr.com/65535/53717960063_aafb8eaab8_b.jpg" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-image"></i> 圖鑑</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🧂</div>
+            <div>
+              <div class="card-name">堀西戶外萬用香料調味料</div>
+              <div class="card-subtext">Costco (250g 大罐裝)</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">¥1,280</span>
+            <a href="https://cdn.store-assets.com/s/978081/i/39211057.jpeg" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-image"></i> 圖鑑</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🍤</div>
+            <div>
+              <div class="card-name">天華 天婦羅花</div>
+              <div class="card-subtext">煮麵、炒飯百搭炸油渣</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="price-tag">約 ¥300</span>
+            <a href="https://thefabulouslifestyles.com/static/f4cfc5b45d6ae1e377384bb56a52b159/8e1fc/13-takoyaki.jpg" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-image"></i> 圖鑑</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🥬</div>
+            <div>
+              <div class="card-name">日本愛菜果 蔬果保鮮袋</div>
+              <div class="card-subtext">超強蔬果保鮮</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>超市採購</span>
+            <a href="https://cdn.cybassets.com/media/W1siZiIsIjIxNDI3L3Byb2R1Y3RzLzM4MDA1Mzk0LzE2NjM3MjQ0NzVfODg3ODNlNDcwMTEwZGRkZWZmMWMuanBlZyJdLFsicCIsInRodW1iIiwiNjAweDYwMCJdXQ.jpeg?sha=272af38456ccf2b6" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-image"></i> 圖鑑</a>
+          </div>
+        </div>
+
+        <div class="card-item shop-item" onclick="toggleCheck(this)">
+          <div class="card-head">
+            <div class="card-icon">🧼</div>
+            <div>
+              <div class="card-name">獅王 Magica 速乾洗碗精</div>
+              <div class="card-subtext">220ml $44 / 710ml $109</div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span>超市好物</span>
+            <a href="https://online.carrefour.com.tw/on/demandware.static/-/Sites-carrefour-tw-m-inner/default/dw799c2790/images/large/1105019600101.jpg" target="_blank" class="action-link" onclick="event.stopPropagation();"><i class="fa-solid fa-image"></i> 圖鑑</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 優惠券專區 -->
+    <section class="section-card" id="coupon">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-badge" style="background: var(--accent);"><i class="fa-solid fa-ticket"></i></span>
+          <h2 class="day-heading">必備購物優惠券 (出示即享折扣)</h2>
+        </div>
+      </div>
+
+      <div class="grid-cards">
+        <div class="coupon-card">
+          <div class="coupon-info">
+            <span style="font-size: 1.6rem;">🛒</span>
+            <div>
+              <div style="font-weight: 700;">AEON 永旺百貨</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">95折 + 免稅 10%</div>
+            </div>
+          </div>
+          <a href="https://www.welcome-aeon.com/coupon/?lang=zh-CHT" target="_blank" class="coupon-btn">領取優惠</a>
+        </div>
+
+        <div class="coupon-card">
+          <div class="coupon-info">
+            <span style="font-size: 1.6rem;">💡</span>
+            <div>
+              <div style="font-weight: 700;">愛電王 EDION</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">最高現折 7%</div>
+            </div>
+          </div>
+          <a href="https://www.edion.com/ito/contents/special/dutyfreeshop/180327dtnbr/img/coupon_ticket_pc.png" target="_blank" class="coupon-btn">領取優惠</a>
+        </div>
+
+        <div class="coupon-card">
+          <div class="coupon-info">
+            <span style="font-size: 1.6rem;">📷</span>
+            <div>
+              <div style="font-weight: 700;">BIC CAMERA</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">免稅 10% + 最高 7%</div>
+            </div>
+          </div>
+          <a href="https://www.taxfreeshops.jp/img/tieup2/coupon_zhtw.jpg?202208" target="_blank" class="coupon-btn">領取優惠</a>
+        </div>
+
+        <div class="coupon-card">
+          <div class="coupon-info">
+            <span style="font-size: 1.6rem;">🎿</span>
+            <div>
+              <div style="font-weight: 700;">Alpen NAGOYA</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">戶外運動用品折價</div>
+            </div>
+          </div>
+          <a href="https://d1grca2t3zpuug.cloudfront.net/2025/05/alpencoupon2025-2480x1791.webp" target="_blank" class="coupon-btn">領取優惠</a>
+        </div>
+
+        <div class="coupon-card">
+          <div class="coupon-info">
+            <span style="font-size: 1.6rem;">📁</span>
+            <div>
+              <div style="font-weight: 700;">名古屋優惠券備份</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Google Drive 雲端資料夾</div>
+            </div>
+          </div>
+          <a href="https://drive.google.com/drive/folders/1L5oSOAmZLUPEaUEnK2gc9NJ-oLYjAOfL" target="_blank" class="coupon-btn">開啟雲端</a>
+        </div>
+
+        <div class="coupon-card">
+          <div class="coupon-info">
+            <span style="font-size: 1.6rem;">🐧</span>
+            <div>
+              <div style="font-weight: 700;">驚安殿堂 唐吉訶德</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">滿額現折 5%</div>
+            </div>
+          </div>
+          <a href="https://japanportal.donki-global.com/coupon/cp001_zhtw.html" target="_blank" class="coupon-btn">領取電子券</a>
+        </div>
+
+        <div class="coupon-card">
+          <div class="coupon-info">
+            <span style="font-size: 1.6rem;">🏬</span>
+            <div>
+              <div style="font-weight: 700;">名鐵百貨店</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">九五折優惠券</div>
+            </div>
+          </div>
+          <a href="https://www.callingtaiwan.com.tw/wp-content/uploads/2025/10/meitetsu_department_store_coupon2026-1229x1536.jpg" target="_blank" class="coupon-btn">領取優惠</a>
+        </div>
+
+        <div class="coupon-card">
+          <div class="coupon-info">
+            <span style="font-size: 1.6rem;">🏬</span>
+            <div>
+              <div style="font-weight: 700;">松坂屋百貨</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">購物折價券</div>
+            </div>
+          </div>
+          <a href="https://drive.google.com/file/d/1FwIbRxPY6-cqhlFxG2Nw6cl05yJ6m0Wo/view" target="_blank" class="coupon-btn">查看優惠</a>
+        </div>
+
+        <div class="coupon-card">
+          <div class="coupon-info">
+            <span style="font-size: 1.6rem;">💊</span>
+            <div>
+              <div style="font-weight: 700;">SUGI 杉藥局</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">藥妝最高現折 8%</div>
+            </div>
+          </div>
+          <a href="https://www.callingtaiwan.com.tw/wp-content/uploads/2025/02/sugi_coupon_2025.png" target="_blank" class="coupon-btn">領取優惠</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Back to Top Button -->
+  <div class="btn-top" id="btnTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fa-solid fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // 購物清單打勾儲存功能 (LocalStorage)
+    function toggleCheck(card) {
+      card.classList.toggle('checked');
+      saveChecklistState();
+    }
+
+    function saveChecklistState() {
+      const items = document.querySelectorAll('.shop-item');
+      const state = [];
+      items.forEach((item, index) => {
+        if (item.classList.contains('checked')) {
+          state.push(index);
         }
+      });
+      localStorage.setItem('nagoya_shopping_checklist', JSON.stringify(state));
+    }
 
-        video.addEventListener('ended', endIntro);
-        skipButton.addEventListener('click', endIntro);
-        
-        video.play().catch(error => {
-            console.warn("Video autoplay failed.", error);
+    function loadChecklistState() {
+      const saved = localStorage.getItem('nagoya_shopping_checklist');
+      if (saved) {
+        const state = JSON.parse(saved);
+        const items = document.querySelectorAll('.shop-item');
+        state.forEach(index => {
+          if (items[index]) {
+            items[index].classList.add('checked');
+          }
         });
+      }
+    }
 
-        document.querySelector('.tab-button').click();
+    // 滾動偵測：返回頂部按鈕 + 導覽標籤高亮
+    window.addEventListener('scroll', () => {
+      const btnTop = document.getElementById('btnTop');
+      if (window.scrollY > 300) {
+        btnTop.classList.add('show');
+      } else {
+        btnTop.classList.remove('show');
+      }
+
+      // Scrollspy
+      const sections = document.querySelectorAll('section');
+      const navPills = document.querySelectorAll('.nav-pill');
+      let current = '';
+
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (window.scrollY >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+
+      navPills.forEach(pill => {
+        pill.classList.remove('active');
+        if (pill.getAttribute('href') === `#${current}`) {
+          pill.classList.add('active');
+        }
+      });
     });
 
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-            tabcontent[i].classList.remove("active", "day1", "day2", "day3", "day4", "day5", "day6", "day7", "default-color");
-        }
-        tablinks = document.getElementsByClassName("tab-button");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
-        
-        var targetContent = document.getElementById(tabName);
-        targetContent.style.display = "block";
-        
-        var targetTabButton = evt.currentTarget;
-        targetTabButton.classList.add("active");
-        
-        var colorClass = targetTabButton.classList[1]; 
-        targetContent.classList.add("active", colorClass);
-    }
-</script>
-
+    document.addEventListener('DOMContentLoaded', loadChecklistState);
+  </script>
 </body>
 </html>
