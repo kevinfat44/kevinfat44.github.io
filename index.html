@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KADOLI TEXTILE ｜ 卡多利窗飾・國際傢飾布典藏</title>
-  <!-- Google Fonts & Font Awesome -->
+  <title>卡多利窗飾有限公司 ｜ 專業傢飾布與窗飾解決方案 KADOLI TEXTILE</title>
+  
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <style>
     :root {
-      --bg-warm: #F8F7F4;
+      --bg-warm: #F9F8F6;
       --card-bg: #FFFFFF;
-      --text-main: #1A1918;
-      --text-sub: #6E6C65;
-      --accent: #B89C72;
+      --text-main: #1F1E1B;
+      --text-sub: #66645E;
+      --accent: #B38E5D;
       --accent-soft: #F4EFE6;
       --border: #E8E5DF;
       --radius: 8px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 12px 32px rgba(31,30,27,0.08);
       --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -28,62 +31,83 @@
       font-family: 'Noto Sans TC', sans-serif;
       background-color: var(--bg-warm);
       color: var(--text-main);
-      line-height: 1.7;
+      line-height: 1.8;
       letter-spacing: 0.02em;
     }
 
     a { text-decoration: none; color: inherit; }
 
-    /* Navigation */
+    /* Top Announcement Bar */
+    .top-bar {
+      background: var(--text-main);
+      color: #fff;
+      font-size: 0.8rem;
+      padding: 6px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-bar-contact { display: flex; gap: 20px; }
+
+    /* Nav */
     .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(248, 247, 244, 0.9);
+      position: sticky;
+      top: 0;
+      background: rgba(249, 248, 246, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       z-index: 100;
-      padding: 18px 40px;
+      padding: 16px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     .brand-logo {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-en {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       letter-spacing: 0.15em;
       font-weight: 600;
-      text-transform: uppercase;
+      line-height: 1;
     }
-    .nav-links {
+    .brand-zh {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      letter-spacing: 0.1em;
+      margin-top: 2px;
+    }
+    .nav-menu {
       display: flex;
       gap: 32px;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 500;
-      color: var(--text-sub);
     }
-    .nav-links a:hover { color: var(--text-main); }
-    .btn-contact {
+    .nav-menu a:hover { color: var(--accent); }
+    .btn-nav {
       background: var(--text-main);
       color: #fff;
       padding: 8px 20px;
-      border-radius: 40px;
+      border-radius: 4px;
       font-size: 0.85rem;
       transition: var(--transition);
     }
-    .btn-contact:hover { background: var(--accent); }
+    .btn-nav:hover { background: var(--accent); }
 
     /* Hero Section */
     .hero {
-      height: 90vh;
       position: relative;
+      height: 80vh;
+      min-height: 520px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: #fff;
       padding: 0 20px;
-      margin-top: 60px;
-      overflow: hidden;
+      background: #111;
     }
     .hero-img {
       position: absolute;
@@ -91,39 +115,64 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.65);
+      opacity: 0.55;
     }
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 800px;
+      max-width: 850px;
     }
-    .hero-subtitle {
+    .hero-tag {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      letter-spacing: 0.25em;
+      font-size: 1.1rem;
+      letter-spacing: 0.3em;
+      color: #dfd8c8;
       text-transform: uppercase;
-      margin-bottom: 16px;
-      color: #e5e5e5;
+      margin-bottom: 12px;
     }
     .hero-title {
-      font-size: 2.8rem;
-      font-weight: 400;
-      line-height: 1.3;
-      margin-bottom: 24px;
+      font-size: 2.6rem;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 20px;
       letter-spacing: 0.05em;
     }
+    .hero-desc {
+      font-size: 1rem;
+      color: #f1f1f1;
+      font-weight: 300;
+      max-width: 680px;
+      margin: 0 auto 30px;
+    }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; }
+    .btn-hero-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .btn-hero-primary:hover { background: #9c7849; }
+    .btn-hero-outline {
+      border: 1px solid rgba(255,255,255,0.7);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    .btn-hero-outline:hover { background: #fff; color: var(--text-main); }
 
     /* Container */
     .container {
-      max-width: 1200px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 100px 24px;
+      padding: 90px 24px;
     }
 
-    .section-header {
+    .section-head {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 50px;
     }
     .section-en {
       font-family: 'Cormorant Garamond', serif;
@@ -133,119 +182,186 @@
       text-transform: uppercase;
     }
     .section-title {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-top: 6px;
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* About Card */
+    .about-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 80px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .about-text h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+    .about-text p {
+      color: var(--text-sub);
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .stat-item {
+      background: var(--bg-warm);
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-sub);
     }
 
     /* Catalog Cards (見本帳型錄) */
     .catalog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
     }
     .catalog-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      transition: var(--transition);
       display: flex;
       flex-direction: column;
+      transition: var(--transition);
     }
     .catalog-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+      transform: translateY(-4px);
       border-color: var(--accent);
+      box-shadow: var(--shadow-md);
     }
     .catalog-cover {
-      height: 240px;
+      height: 220px;
       position: relative;
       overflow: hidden;
+      background: #e9e7e1;
     }
     .catalog-cover img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      transition: transform 0.5s;
     }
-    .catalog-card:hover .catalog-cover img {
-      transform: scale(1.05);
-    }
-    .catalog-tag {
+    .catalog-card:hover .catalog-cover img { transform: scale(1.04); }
+    .catalog-badge {
       position: absolute;
-      top: 16px;
-      left: 16px;
-      background: rgba(26,25,24,0.85);
+      top: 14px;
+      left: 14px;
+      background: rgba(31,30,27,0.85);
       color: #fff;
-      padding: 4px 12px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
+      padding: 4px 10px;
       border-radius: 4px;
       backdrop-filter: blur(4px);
     }
     .catalog-info {
-      padding: 28px;
+      padding: 24px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .catalog-name {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .catalog-desc {
-      font-size: 0.9rem;
+    .catalog-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+    .catalog-desc { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 16px; }
+    .tag-list { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+    .tag-pill {
+      font-size: 0.75rem;
+      background: var(--bg-warm);
       color: var(--text-sub);
-      margin-bottom: 24px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
     }
-    .catalog-actions {
-      display: flex;
-      gap: 12px;
-      border-top: 1px solid var(--border);
-      padding-top: 20px;
-    }
-    .btn-action {
-      flex: 1;
-      text-align: center;
+    .catalog-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      background: var(--bg-warm);
+      border: 1px solid var(--border);
       padding: 10px 0;
       border-radius: 6px;
       font-size: 0.85rem;
       font-weight: 600;
+      color: var(--text-main);
       transition: var(--transition);
     }
-    .btn-primary { background: var(--text-main); color: #fff; }
-    .btn-primary:hover { background: var(--accent); }
-    .btn-secondary { background: var(--accent-soft); color: var(--text-main); }
-    .btn-secondary:hover { background: #e8ded0; }
+    .catalog-btn:hover {
+      background: var(--text-main);
+      color: #fff;
+      border-color: var(--text-main);
+    }
 
-    /* Highlights / Features */
-    .features-strip {
+    /* Contact Section */
+    .contact-box {
       background: var(--card-bg);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 60px 24px;
-    }
-    .features-grid {
-      max-width: 1200px;
-      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px 40px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 40px;
-      text-align: center;
     }
-    .feature-icon {
-      font-size: 2rem;
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--accent-soft);
       color: var(--accent);
-      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
     }
-    .feature-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-    .feature-text { font-size: 0.88rem; color: var(--text-sub); }
+    .contact-title { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 2px; }
+    .contact-detail { font-size: 1.05rem; font-weight: 600; color: var(--text-main); }
+
+    /* Footer */
+    footer {
+      background: var(--text-main);
+      color: #888;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.85rem;
+    }
 
     @media (max-width: 768px) {
-      .nav { padding: 16px 20px; }
-      .nav-links { display: none; }
+      .top-bar { display: none; }
+      .nav { padding: 14px 20px; }
+      .nav-menu { display: none; }
+      .about-box, .contact-box { grid-template-columns: 1fr; padding: 24px; }
       .hero-title { font-size: 2rem; }
       .container { padding: 60px 16px; }
     }
@@ -253,114 +369,211 @@
 </head>
 <body>
 
-  <!-- Top Nav -->
-  <nav class="nav">
-    <div class="brand-logo">KADOLI <span>卡多利窗飾</span></div>
-    <div class="nav-links">
-      <a href="#catalog">見本帳型錄</a>
-      <a href="#fabrics">布樣材質</a>
-      <a href="#projects">工程實績</a>
-      <a href="#about">關於品牌</a>
+  <!-- Top Announcement -->
+  <div class="top-bar">
+    <div>卡多利窗飾 ｜ 誠信・熱誠・客戶至上</div>
+    <div class="top-bar-contact">
+      <span><i class="fa-solid fa-phone"></i> (02) 8209-2323</span>
+      <span><i class="fa-solid fa-location-dot"></i> 桃園市龜山區萬壽路1段527號2樓</span>
     </div>
-    <a href="#contact" class="btn-contact">索取樣品 / 合作洽詢</a>
+  </div>
+
+  <!-- Main Navigation -->
+  <nav class="nav">
+    <div class="brand-logo">
+      <span class="brand-en">KADOLI TEXTILE</span>
+      <span class="brand-zh">卡多利窗飾有限公司</span>
+    </div>
+    <div class="nav-menu">
+      <a href="#about">品牌簡介</a>
+      <a href="#catalogs">見本帳型錄</a>
+      <a href="#applications">應用範圍</a>
+      <a href="#contact">聯絡洽詢</a>
+    </div>
+    <a href="#contact" class="btn-nav">業務洽詢 / 索樣</a>
   </nav>
 
   <!-- Hero Section -->
   <header class="hero">
-    <img class="hero-img" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80" alt="高級窗飾空間">
+    <img class="hero-img" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80" alt="卡多利窗飾">
     <div class="hero-content">
-      <div class="hero-subtitle">Architectural Textile & Window Décor</div>
-      <h1 class="hero-title">以光影與質地，定義空間的沉靜美學</h1>
-      <p style="font-size: 1rem; color: #e2e8f0; font-weight: 300;">創立自 1999 年 ｜ 日本防炎規範 ｜ 高精密緹花與多層次遮光傢飾布專門</p>
+      <div class="hero-tag">ESTABLISHED 1999 ・ FINE FABRIC & CURTAIN</div>
+      <h1 class="hero-title">以嚴謹織造工藝，賦予空間豐富的光影層次</h1>
+      <p class="hero-desc">由窗簾批發轉型為專業傢飾布公司，結合全台設計裝潢業者與國外頂尖技術，提供多層次遮光、防火防焰、細緻緹花等全方位布樣選擇。</p>
+      <div class="hero-actions">
+        <a href="#catalogs" class="btn-hero-primary"><i class="fa-solid fa-book-open"></i> 瀏覽見本帳</a>
+        <a href="#contact" class="btn-hero-outline"><i class="fa-solid fa-phone"></i> 聯繫專員</a>
+      </div>
     </div>
   </header>
 
-  <!-- Brand Highlights -->
-  <section class="features-strip">
-    <div class="features-grid">
-      <div>
-        <div class="feature-icon"><i class="fa-solid fa-scroll"></i></div>
-        <div class="feature-title">多樣化見本帳系列</div>
-        <div class="feature-text">從無接縫高垂墜紗、頂級緹花到多層次物理遮光布，涵蓋千款花色。</div>
+  <!-- Container -->
+  <main class="container">
+
+    <!-- About Section -->
+    <div class="about-box" id="about">
+      <div class="about-text">
+        <div class="section-en">ABOUT KADOLI</div>
+        <h3>關於卡多利窗飾</h3>
+        <p>卡多利窗飾有限公司成立於 1999 年，由窗簾批發商穩健轉型為全方位傢飾布供應商。一直以來秉持著「誠信、熱誠、客戶至上」的經營理念，深受各大設計公司及裝潢業界信賴。</p>
+        <p>我們積極與國外頂尖織品供應鏈接洽合作，無論在布料品質、花色樣式或出貨時效性，皆維持業界領先標準，滿足客戶最挑剔的空間需求。</p>
       </div>
-      <div>
-        <div class="feature-icon"><i class="fa-solid fa-fire-shield"></i></div>
-        <div class="feature-title">防焰與安全規範</div>
-        <div class="feature-text">符合內政部消防署防焰認定與安全標準，各大飯店與商用空間指定。</div>
-      </div>
-      <div>
-        <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
-        <div class="feature-title">MIT 認證與優良品質</div>
-        <div class="feature-text">嚴格品管與穩定供貨時效，為全台設計師與裝潢工程提供強大後盾。</div>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">1999</div>
+          <div class="stat-label">成立年份（深耕27年）</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">全遮光 / 物理防焰規格</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1,000+</div>
+          <div class="stat-label">現貨花色與織樣庫存</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">MIT</div>
+          <div class="stat-label">微笑標章與防焰認證</div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Catalog Section -->
-  <main class="container" id="catalog">
-    <div class="section-header">
-      <div class="section-en">DIGITAL CATALOGS</div>
-      <h2 class="section-title">線上電子型錄與布樣見本帳</h2>
+    <!-- Catalogs Section (見本帳系列) -->
+    <div class="section-head" id="catalogs">
+      <div class="section-en">FABRIC COLLECTIONS</div>
+      <h2 class="section-title">見本帳型錄一覧</h2>
+      <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 6px;">涵蓋窗簾、沙發布、床頭繃布等多元傢飾織品</p>
     </div>
 
     <div class="catalog-grid">
-      
-      <!-- 型錄卡片 1 -->
+
+      <!-- 1. 創世紀五合一 -->
       <div class="catalog-card">
         <div class="catalog-cover">
-          <span class="catalog-tag">FLAGSHIP</span>
-          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=700&q=80" alt="創世紀多層次遮光">
+          <span class="catalog-badge">100% 全遮光</span>
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80" alt="創世紀五合一">
         </div>
         <div class="catalog-info">
           <div>
-            <h3 class="catalog-name">創世紀・多層次遮光系列 8</h3>
-            <p class="catalog-desc">三層黑絲夾層物理遮光技術，兼具亞麻自然手感與 99% 高遮光效能，適合臥室與西曬空間。</p>
+            <h3 class="catalog-name">創世紀・五合一全遮光系列</h3>
+            <p class="catalog-desc">LG 創世紀 100% 全遮光技術，具備隔熱、隔音、防紫外線等多重機能，睡眠與視聽室首選。</p>
+            <div class="tag-list">
+              <span class="tag-pill">100% 遮光</span>
+              <span class="tag-pill">隔熱降溫</span>
+              <span class="tag-pill">高精密手感</span>
+            </div>
           </div>
-          <div class="catalog-actions">
-            <a href="#" class="btn-action btn-primary"><i class="fa-solid fa-book-open"></i> 線上翻閱</a>
-            <a href="#" class="btn-action btn-secondary"><i class="fa-solid fa-file-pdf"></i> PDF 規格</a>
-          </div>
+          <a href="#contact" class="catalog-btn"><i class="fa-solid fa-book-open"></i> 索取見本帳 / 詢價</a>
         </div>
       </div>
 
-      <!-- 型錄卡片 2 -->
+      <!-- 2. 夢想家防焰系列 -->
       <div class="catalog-card">
         <div class="catalog-cover">
-          <span class="catalog-tag">HOTEL & PROJECT</span>
-          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=700&q=80" alt="夢想家防焰系列">
+          <span class="catalog-badge">消防署防焰認證</span>
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80" alt="夢想家防焰系列">
         </div>
         <div class="catalog-info">
           <div>
-            <h3 class="catalog-name">夢想家・防焰傢飾布典藏</h3>
-            <p class="catalog-desc">通過國家防焰標準檢驗，廣泛運用於大型工程、精品飯店與醫療長照院所，安全與美感並存。</p>
+            <h3 class="catalog-name">夢想家・防焰工程織品系列</h3>
+            <p class="catalog-desc">通過內政部消防署防焰安全認證，專為飯店、公共工程、商用空間量身打造的安全阻燃布種。</p>
+            <div class="tag-list">
+              <span class="tag-pill">防焰性能合格</span>
+              <span class="tag-pill">公共工程指定</span>
+              <span class="tag-pill">耐磨防污</span>
+            </div>
           </div>
-          <div class="catalog-actions">
-            <a href="#" class="btn-action btn-primary"><i class="fa-solid fa-book-open"></i> 線上翻閱</a>
-            <a href="#" class="btn-action btn-secondary"><i class="fa-solid fa-file-pdf"></i> PDF 規格</a>
-          </div>
+          <a href="#contact" class="catalog-btn"><i class="fa-solid fa-book-open"></i> 索取見本帳 / 詢價</a>
         </div>
       </div>
 
-      <!-- 型錄卡片 3 -->
+      <!-- 3. CK 織品與大萊卡 -->
       <div class="catalog-card">
         <div class="catalog-cover">
-          <span class="catalog-tag">ELEGANCE</span>
-          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=700&q=80" alt="布拉格緹花系列">
+          <span class="catalog-badge">設計師推薦</span>
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80" alt="CK 織品">
         </div>
         <div class="catalog-info">
           <div>
-            <h3 class="catalog-name">布拉格・精緻緹花與無接縫紗</h3>
-            <p class="catalog-desc">高針密細膩織造工藝，完美呈現蛇形簾的大波浪垂墜弧度，為現代住宅注入輕奢層次。</p>
+            <h3 class="catalog-name">CK 織品・大萊卡頂級系列</h3>
+            <p class="catalog-desc">進口傢飾布觸感，包含高雅細膩緹花布與印花布，適用於蛇形簾、大器客廳與質感軟裝。</p>
+            <div class="tag-list">
+              <span class="tag-pill">高針密緹花</span>
+              <span class="tag-pill">無接縫垂墜</span>
+              <span class="tag-pill">沙發床頭布</span>
+            </div>
           </div>
-          <div class="catalog-actions">
-            <a href="#" class="btn-action btn-primary"><i class="fa-solid fa-book-open"></i> 線上翻閱</a>
-            <a href="#" class="btn-action btn-secondary"><i class="fa-solid fa-file-pdf"></i> PDF 規格</a>
+          <a href="#contact" class="catalog-btn"><i class="fa-solid fa-book-open"></i> 索取見本帳 / 詢價</a>
+        </div>
+      </div>
+
+      <!-- 4. 捲簾與百葉窗飾軌道 -->
+      <div class="catalog-card">
+        <div class="catalog-cover">
+          <span class="catalog-badge">窗飾五金系統</span>
+          <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80" alt="百葉窗與捲簾">
+        </div>
+        <div class="catalog-info">
+          <div>
+            <h3 class="catalog-name">捲簾・橫式百葉・窗簾軌道</h3>
+            <p class="catalog-desc">整合羅馬簾、直立簾、木竹簾、鋁百葉及實木軌/靜音軌道配件，提供完整的一站式配套。</p>
+            <div class="tag-list">
+              <span class="tag-pill">調光捲簾</span>
+              <span class="tag-pill">木竹百葉</span>
+              <span class="tag-pill">靜音窗軌</span>
+            </div>
           </div>
+          <a href="#contact" class="catalog-btn"><i class="fa-solid fa-book-open"></i> 索取見本帳 / 詢價</a>
         </div>
       </div>
 
     </div>
+
+    <!-- Contact & Company Info -->
+    <div class="section-head" id="contact" style="margin-top: 80px;">
+      <div class="section-en">CONTACT US</div>
+      <h2 class="section-title">聯絡卡多利</h2>
+      <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 6px;">歡迎全台設計師、裝潢工程與批發業者來電或來信洽詢</p>
+    </div>
+
+    <div class="contact-box">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <div class="contact-title">公司代表號</div>
+            <div class="contact-detail">(02) 8209-2323</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-fax"></i></div>
+          <div>
+            <div class="contact-title">傳真號碼</div>
+            <div class="contact-detail">(02) 8209-2828</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <div class="contact-title">公司地址</div>
+            <div class="contact-detail">桃園市龜山區萬壽路1段527號2樓</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; justify-content: center; background: var(--bg-warm); padding: 24px; border-radius: 6px;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 8px;">🏢 業務與樣品索取服務</h4>
+        <p style="font-size: 0.88rem; color: var(--text-sub); margin-bottom: 16px;">如果您是室內設計師、窗簾門市或工程統包，需要索取最新「創世紀」或「夢想家」實體見本帳，請撥打業務專線與我們聯繫，將有專人為您服務。</p>
+        <a href="tel:0282092323" class="catalog-btn" style="background: var(--text-main); color: #fff;"><i class="fa-solid fa-phone"></i> 立即通話洽詢</a>
+      </div>
+    </div>
+
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 1999-2026 卡多利窗飾有限公司 KADOLI TEXTILE CO., LTD. All Rights Reserved.</p>
+  </footer>
 
 </body>
 </html>
