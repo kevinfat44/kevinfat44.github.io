@@ -3,76 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇯🇵 2026 名古屋冬季初訪之旅</title>
-    <link href="https://googleapis.com" rel="stylesheet">
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <title>2026 名古屋冬季初訪之旅 - 七日完整版</title>
     <style>
-        :root { --primary: #2C3E50; --accent: #E74C3C; --bg-light: #F8F9FA; --card-shadow: 0 10px 30px rgba(0,0,0,0.05); --transition: all 0.3s ease; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-light); color: #333; line-height: 1.7; scroll-behavior: smooth; }
-        .hero { position: relative; height: 50vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center; overflow: hidden; }
-        .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; z-index: 1; transform: translate(-50%, -50%); object-fit: cover; }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(44,62,80,0.7), rgba(0,0,0,0.5)); z-index: 2; }
-        .hero-content { position: relative; z-index: 3; padding: 20px; }
-        .hero-content h1 { font-family: 'Noto Serif JP', serif; font-size: 3rem; margin-bottom: 15px; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .navbar { position: sticky; top: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 10px 0; overflow-x: auto; }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; gap: 8px; padding: 0 20px; }
-        .nav-link { color: var(--primary); text-decoration: none; padding: 6px 14px; border-radius: 20px; transition: var(--transition); font-size: 0.9rem; font-weight: 500; white-space: nowrap; }
-        .nav-link:hover { background-color: var(--primary); color: white; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .section-title { font-family: 'Noto Serif JP', serif; font-size: 1.8rem; color: var(--primary); margin: 40px 0 20px 0; border-left: 5px solid var(--accent); padding-left: 15px; }
-        .day-card { background: white; border-radius: 16px; padding: 25px; margin-bottom: 30px; box-shadow: var(--card-shadow); }
-        .day-header { font-size: 1.3rem; color: var(--accent); margin-bottom: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #eee; padding-bottom: 10px; }
-        .itinerary-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-        .itinerary-table td { padding: 12px 10px; border-bottom: 1px solid #F2F4F4; font-size: 0.95rem; }
-        .time-col { width: 110px; font-weight: bold; color: #7F8C8D; }
-        .cost-col { width: 110px; color: #27AE60; font-weight: 500; }
-        .trans-col { width: 140px; color: #2980B9; font-weight: 500; }
-        .hotel-tag { background: #E8F4F8; color: #2980B9; padding: 6px 14px; border-radius: 6px; font-weight: 500; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; }
-        .summary-box { background: #FCF3CF; padding: 10px 15px; border-radius: 6px; font-size: 0.88rem; margin-top: 10px; display: inline-block; color: #B7950B; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 12px; padding: 20px; box-shadow: var(--card-shadow); transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0,0,0,0.08); }
-        .card-title { font-size: 1.1rem; font-weight: bold; color: var(--primary); margin-bottom: 5px; }
-        .card-desc { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; background-color: var(--primary); color: white; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 0.88rem; transition: var(--transition); }
-        .btn:hover { background-color: var(--accent); }
-        .coupon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
-        .coupon-card { background: #FFF5F5; border: 2px dashed var(--accent); border-radius: 10px; padding: 20px; text-align: center; transition: var(--transition); text-decoration: none; color: inherit; display: block; }
-        .coupon-card:hover { transform: scale(1.02); background: #FFEBEB; }
-        .coupon-name { font-weight: bold; font-size: 1.1rem; margin-top: 8px; color: var(--primary); }
+        /* 精簡樣式 */
+        body { font-family: sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .day-card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .day-header { color: #2c3e50; font-weight: bold; font-size: 1.2em; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; }
+        .itinerary-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .itinerary-table td { padding: 8px; border-bottom: 1px solid #eee; }
+        .time-col { font-weight: bold; color: #7f8c8d; width: 120px; }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>2026 名古屋冬季初訪之旅</h1>
+        <p>飛驒高山．合掌村．玩雪購物七日詳細行程表</p>
 
-    <header class="hero">
-        <video class="hero-video" autoplay loop muted playsinline><source src="2026NOGOYA.mp4" type="video/mp4"></video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>2026 名古屋冬季初訪之旅</h1>
-            <p>🏯 飛驒高山．合掌村．玩雪購物完整行程表 ❄️</p>
+        <!-- DAY 1-7 Summary Structure -->
+        <div class="day-card">
+            <div class="day-header">DAY 1: 抵達與名古屋市區</div>
+            <p>樂桃航空、名鐵特急、名古屋科學館、購買防水噴霧、入住名古屋伏見大和Roynet飯店。</p>
         </div>
-    </header>
-
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#day1" class="nav-link">Day 1</a>
-            <a href="#day2" class="nav-link">Day 2</a>
-            <a href="#day3" class="nav-link">Day 3</a>
-            <a href="#day4" class="nav-link">Day 4</a>
-            <a href="#day5" class="nav-link">Day 5</a>
-            <a href="#day6" class="nav-link">Day 6</a>
-            <a href="#day7" class="nav-link">Day 7</a>
-            <a href="#food" class="nav-link">🍙 美食推薦</a>
-            <a href="#shopping" class="nav-link">🧵 購物清單</a>
-            <a href="#coupons" class="nav-link">🎁 優惠券</a>
+        <div class="day-card">
+            <div class="day-header">DAY 2: 飛驒高山與合掌村</div>
+            <p>KKDAY合掌村一日遊、千里馬藥局採購。</p>
         </div>
-    </nav>
-
-    <main class="container">
-        <!-- 完整的 7 天行程區塊會顯示在這裡，請參照原稿內容填入下方 -->
-        <section id="day1" class="day-card"><div class="day-header"><span><i class="fa-solid fa-calendar-day"></i> Day 1: 抵達與逛街</span></div>...內容...</section>
-        <section id="day7" class="day-card"><div class="day-header"><span><i class="fa-solid fa-calendar-day"></i> Day 7: 歸途</span></div>...內容...</section>
-    </main>
+        <div class="day-card">
+            <div class="day-header">DAY 3: 御在所岳玩雪</div>
+            <p>名鐵巴士、御在所纜車玩雪。</p>
+        </div>
+        <div class="day-card">
+            <div class="day-header">DAY 4: 三井Outlet Park</div>
+            <p>爵士之夢長島直達巴士購物。</p>
+        </div>
+        <div class="day-card">
+            <div class="day-header">DAY 5: 犬山城與MOZO</div>
+            <p>犬山城下町洗錢、MOZO Wonder City購物。</p>
+        </div>
+        <div class="day-card">
+            <div class="day-header">DAY 6: 常滑採購</div>
+            <p>AEON常滑、Costco、入住機場東橫INN。</p>
+        </div>
+        <div class="day-card">
+            <div class="day-header">DAY 7: 歸途</div>
+            <p>機場購物、星宇航空返台。</p>
+        </div>
+    </div>
 </body>
 </html>
