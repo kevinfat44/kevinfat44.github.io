@@ -3,60 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>卡多利窗飾有限公司 ｜ 專業傢飾布與窗飾解決方案 KADOLI TEXTILE</title>
-  
-  <!-- Fonts & Icons -->
+  <title>卡多利窗飾有限公司 ｜ KADOLI Interior Textiles</title>
+  <!-- Google 字體與圖標 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --bg-warm: #F9F8F6;
+      --bg-main: #FAF9F6;
       --card-bg: #FFFFFF;
-      --text-main: #1F1E1B;
-      --text-sub: #66645E;
-      --accent: #B38E5D;
+      --text-dark: #1F1E1B;
+      --text-muted: #6B6861;
+      --accent: #A38258;
       --accent-soft: #F4EFE6;
       --border: #E8E5DF;
-      --radius: 8px;
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-      --shadow-md: 0 12px 32px rgba(31,30,27,0.08);
-      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Noto Sans TC', sans-serif;
-      background-color: var(--bg-warm);
-      color: var(--text-main);
+      font-family: 'Noto Sans TC', -apple-system, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-dark);
       line-height: 1.8;
       letter-spacing: 0.02em;
     }
-
     a { text-decoration: none; color: inherit; }
 
-    /* Top Announcement Bar */
-    .top-bar {
-      background: var(--text-main);
-      color: #fff;
-      font-size: 0.8rem;
-      padding: 6px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .top-bar-contact { display: flex; gap: 20px; }
-
-    /* Nav */
-    .nav {
+    /* 置頂導覽列 */
+    .navbar {
       position: sticky;
       top: 0;
-      background: rgba(249, 248, 246, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
       z-index: 100;
+      background: rgba(250, 249, 246, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
       padding: 16px 40px;
       display: flex;
       justify-content: space-between;
@@ -67,512 +55,446 @@
       flex-direction: column;
     }
     .brand-en {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      letter-spacing: 0.15em;
-      font-weight: 600;
-      line-height: 1;
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-dark);
     }
-    .brand-zh {
-      font-size: 0.82rem;
-      color: var(--text-sub);
-      letter-spacing: 0.1em;
-      margin-top: 2px;
+    .brand-cn {
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+      font-weight: 500;
     }
     .nav-menu {
       display: flex;
-      gap: 32px;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
       font-size: 0.92rem;
       font-weight: 500;
+      color: var(--text-muted);
     }
-    .nav-menu a:hover { color: var(--accent); }
-    .btn-nav {
-      background: var(--text-main);
-      color: #fff;
-      padding: 8px 20px;
-      border-radius: 4px;
+    .nav-menu a:hover { color: var(--text-dark); }
+    .btn-member {
+      background: var(--text-dark);
+      color: #fff !important;
+      padding: 6px 16px;
+      border-radius: 20px;
       font-size: 0.85rem;
       transition: var(--transition);
     }
-    .btn-nav:hover { background: var(--accent); }
+    .btn-member:hover { background: var(--accent); }
 
-    /* Hero Section */
-    .hero {
-      position: relative;
-      height: 80vh;
-      min-height: 520px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* 主視覺區 (Hero) */
+    .hero-section {
+      padding: 80px 24px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
       text-align: center;
-      color: #fff;
-      padding: 0 20px;
-      background: #111;
-    }
-    .hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.55;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 850px;
     }
     .hero-tag {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.3em;
-      color: #dfd8c8;
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 12px;
     }
     .hero-title {
-      font-size: 2.6rem;
-      font-weight: 500;
+      font-size: 2.3rem;
+      font-weight: 700;
       line-height: 1.4;
       margin-bottom: 20px;
-      letter-spacing: 0.05em;
+      color: var(--text-dark);
     }
-    .hero-desc {
+    .hero-intro {
+      max-width: 820px;
+      margin: 0 auto 36px;
       font-size: 1rem;
-      color: #f1f1f1;
-      font-weight: 300;
-      max-width: 680px;
-      margin: 0 auto 30px;
+      color: var(--text-muted);
+      text-align: justify;
+      background: var(--card-bg);
+      padding: 24px 30px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-subtle);
     }
-    .hero-actions { display: flex; gap: 16px; justify-content: center; }
-    .btn-hero-primary {
-      background: var(--accent);
-      color: #fff;
-      padding: 12px 28px;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-    .btn-hero-primary:hover { background: #9c7849; }
-    .btn-hero-outline {
-      border: 1px solid rgba(255,255,255,0.7);
-      color: #fff;
-      padding: 12px 28px;
-      border-radius: 4px;
-      transition: var(--transition);
-    }
-    .btn-hero-outline:hover { background: #fff; color: var(--text-main); }
 
-    /* Container */
+    /* 容器與標題 */
     .container {
-      max-width: 1180px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 90px 24px;
+      padding: 60px 24px;
     }
-
-    .section-head {
+    .section-header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
     .section-en {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
       color: var(--accent);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      letter-spacing: 2px;
     }
     .section-title {
-      font-size: 1.9rem;
+      font-size: 1.7rem;
       font-weight: 700;
       margin-top: 4px;
     }
 
-    /* About Card */
-    .about-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 48px 40px;
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 80px;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-    .about-text h3 {
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-      color: var(--text-main);
-    }
-    .about-text p {
-      color: var(--text-sub);
-      margin-bottom: 16px;
-      font-size: 0.95rem;
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .stat-item {
-      background: var(--bg-warm);
-      padding: 20px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      text-align: center;
-    }
-    .stat-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-label {
-      font-size: 0.82rem;
-      color: var(--text-sub);
-    }
-
-    /* Catalog Cards (見本帳型錄) */
+    /* 產品型錄 (見本帳系列) */
     .catalog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 28px;
     }
     .catalog-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--radius-md);
       overflow: hidden;
+      box-shadow: var(--shadow-subtle);
+      transition: var(--transition);
       display: flex;
       flex-direction: column;
-      transition: var(--transition);
     }
     .catalog-card:hover {
       transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
       border-color: var(--accent);
-      box-shadow: var(--shadow-md);
     }
-    .catalog-cover {
-      height: 220px;
-      position: relative;
-      overflow: hidden;
-      background: #e9e7e1;
+    .catalog-header {
+      background: var(--accent-soft);
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .catalog-cover img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
+    .catalog-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-dark);
     }
-    .catalog-card:hover .catalog-cover img { transform: scale(1.04); }
     .catalog-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(31,30,27,0.85);
-      color: #fff;
-      font-size: 0.72rem;
-      padding: 4px 10px;
-      border-radius: 4px;
-      backdrop-filter: blur(4px);
+      font-size: 0.75rem;
+      background: var(--card-bg);
+      color: var(--accent);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border);
     }
-    .catalog-info {
-      padding: 24px;
+    .catalog-body {
+      padding: 20px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .catalog-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
-    .catalog-desc { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 16px; }
-    .tag-list { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
-    .tag-pill {
-      font-size: 0.75rem;
-      background: var(--bg-warm);
-      color: var(--text-sub);
-      padding: 2px 8px;
-      border-radius: 4px;
+    .catalog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tag-item {
+      font-size: 0.8rem;
+      background: var(--bg-main);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
       border: 1px solid var(--border);
     }
-    .catalog-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      width: 100%;
-      background: var(--bg-warm);
-      border: 1px solid var(--border);
-      padding: 10px 0;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-main);
+    .btn-query {
+      display: block;
+      text-align: center;
+      background: var(--text-dark);
+      color: #fff;
+      padding: 9px 0;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 500;
       transition: var(--transition);
     }
-    .catalog-btn:hover {
-      background: var(--text-main);
-      color: #fff;
-      border-color: var(--text-main);
-    }
+    .btn-query:hover { background: var(--accent); }
 
-    /* Contact Section */
-    .contact-box {
+    /* 營業項目專區 */
+    .services-wrap {
       background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 24px;
+    }
+    .service-tags-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .service-pill {
+      background: var(--bg-main);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 48px 40px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dark);
+    }
+    .service-pill i { color: var(--accent); font-size: 0.85rem; }
+
+    /* 聯絡我們 (資訊卡片) */
+    .contact-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-subtle);
+      padding: 40px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
     }
     .contact-item {
       display: flex;
-      gap: 16px;
-      margin-bottom: 20px;
+      align-items: flex-start;
+      gap: 14px;
     }
     .contact-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--accent-soft);
+      font-size: 1.2rem;
       color: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
+      margin-top: 4px;
     }
-    .contact-title { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 2px; }
-    .contact-detail { font-size: 1.05rem; font-weight: 600; color: var(--text-main); }
+    .contact-label { font-size: 0.8rem; color: var(--text-muted); }
+    .contact-val { font-size: 0.98rem; font-weight: 600; color: var(--text-dark); }
+    .contact-note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+    }
 
-    /* Footer */
+    /* 頁尾 */
     footer {
-      background: var(--text-main);
-      color: #888;
       text-align: center;
       padding: 30px 20px;
       font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
     }
 
     @media (max-width: 768px) {
-      .top-bar { display: none; }
-      .nav { padding: 14px 20px; }
+      .navbar { padding: 14px 20px; }
       .nav-menu { display: none; }
-      .about-box, .contact-box { grid-template-columns: 1fr; padding: 24px; }
-      .hero-title { font-size: 2rem; }
-      .container { padding: 60px 16px; }
+      .hero-title { font-size: 1.7rem; }
+      .contact-card { padding: 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Announcement -->
-  <div class="top-bar">
-    <div>卡多利窗飾 ｜ 誠信・熱誠・客戶至上</div>
-    <div class="top-bar-contact">
-      <span><i class="fa-solid fa-phone"></i> (02) 8209-2323</span>
-      <span><i class="fa-solid fa-location-dot"></i> 桃園市龜山區萬壽路1段527號2樓</span>
-    </div>
-  </div>
-
-  <!-- Main Navigation -->
-  <nav class="nav">
+  <!-- 置頂導覽列 -->
+  <nav class="navbar">
     <div class="brand-logo">
-      <span class="brand-en">KADOLI TEXTILE</span>
-      <span class="brand-zh">卡多利窗飾有限公司</span>
+      <span class="brand-en">KADOLI CURTAIN</span>
+      <span class="brand-cn">卡多利窗飾有限公司</span>
     </div>
-    <div class="nav-menu">
-      <a href="#about">品牌簡介</a>
-      <a href="#catalogs">見本帳型錄</a>
-      <a href="#applications">應用範圍</a>
-      <a href="#contact">聯絡洽詢</a>
-    </div>
-    <a href="#contact" class="btn-nav">業務洽詢 / 索樣</a>
+    <ul class="nav-menu">
+      <li><a href="#about">關於卡多利</a></li>
+      <li><a href="#catalog">產品查詢</a></li>
+      <li><a href="#services">營業項目</a></li>
+      <li><a href="#news">最新消息</a></li>
+      <li><a href="#contact">聯絡我們</a></li>
+      <li><a href="http://ctl888.com.tw/index.php?prog=login" target="_blank" class="btn-member"><i class="fa-solid fa-lock"></i> 會員專區</a></li>
+    </ul>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <img class="hero-img" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80" alt="卡多利窗飾">
-    <div class="hero-content">
-      <div class="hero-tag">ESTABLISHED 1999 ・ FINE FABRIC & CURTAIN</div>
-      <h1 class="hero-title">以嚴謹織造工藝，賦予空間豐富的光影層次</h1>
-      <p class="hero-desc">由窗簾批發轉型為專業傢飾布公司，結合全台設計裝潢業者與國外頂尖技術，提供多層次遮光、防火防焰、細緻緹花等全方位布樣選擇。</p>
-      <div class="hero-actions">
-        <a href="#catalogs" class="btn-hero-primary"><i class="fa-solid fa-book-open"></i> 瀏覽見本帳</a>
-        <a href="#contact" class="btn-hero-outline"><i class="fa-solid fa-phone"></i> 聯繫專員</a>
-      </div>
+  <!-- 首頁與公司簡介 -->
+  <section class="hero-section" id="about">
+    <span class="hero-tag">Est. 1999 ｜ 專業傢飾布與窗簾批發</span>
+    <h1 class="hero-title">誠信・熱誠・客戶至上</h1>
+    <div class="hero-intro">
+      卡多利窗飾有限公司，成立於1999年，由窗簾批發商轉型為傢飾布公司。一直以來秉持著誠信、熱誠、客戶至上的理念，結合各大設計公司及裝潢業者，以及與國外接洽相互合作，無論品質、樣式或時效性，皆是其他業者望塵莫及。<br><br>
+      傢飾布可廣泛用於窗簾、沙發布、床頭繃布...等，不論是防火布、多層次遮光布、緹花布及印花布...等完全提供您多重選擇，符合您挑剔的需求～
     </div>
-  </header>
+  </section>
 
-  <!-- Container -->
-  <main class="container">
-
-    <!-- About Section -->
-    <div class="about-box" id="about">
-      <div class="about-text">
-        <div class="section-en">ABOUT KADOLI</div>
-        <h3>關於卡多利窗飾</h3>
-        <p>卡多利窗飾有限公司成立於 1999 年，由窗簾批發商穩健轉型為全方位傢飾布供應商。一直以來秉持著「誠信、熱誠、客戶至上」的經營理念，深受各大設計公司及裝潢業界信賴。</p>
-        <p>我們積極與國外頂尖織品供應鏈接洽合作，無論在布料品質、花色樣式或出貨時效性，皆維持業界領先標準，滿足客戶最挑剔的空間需求。</p>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-number">1999</div>
-          <div class="stat-label">成立年份（深耕27年）</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">全遮光 / 物理防焰規格</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">1,000+</div>
-          <div class="stat-label">現貨花色與織樣庫存</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">MIT</div>
-          <div class="stat-label">微笑標章與防焰認證</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Catalogs Section (見本帳系列) -->
-    <div class="section-head" id="catalogs">
-      <div class="section-en">FABRIC COLLECTIONS</div>
-      <h2 class="section-title">見本帳型錄一覧</h2>
-      <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 6px;">涵蓋窗簾、沙發布、床頭繃布等多元傢飾織品</p>
+  <!-- 見本帳與產品查詢 -->
+  <main class="container" id="catalog">
+    <div class="section-header">
+      <div class="section-en">CATALOG & PRODUCTS</div>
+      <h2 class="section-title">主要型錄與產品系列</h2>
     </div>
 
     <div class="catalog-grid">
-
-      <!-- 1. 創世紀五合一 -->
+      <!-- 創世紀 -->
       <div class="catalog-card">
-        <div class="catalog-cover">
-          <span class="catalog-badge">100% 全遮光</span>
-          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80" alt="創世紀五合一">
+        <div class="catalog-header">
+          <div class="catalog-name">創世紀系列</div>
+          <span class="catalog-badge">熱門推薦</span>
         </div>
-        <div class="catalog-info">
-          <div>
-            <h3 class="catalog-name">創世紀・五合一全遮光系列</h3>
-            <p class="catalog-desc">LG 創世紀 100% 全遮光技術，具備隔熱、隔音、防紫外線等多重機能，睡眠與視聽室首選。</p>
-            <div class="tag-list">
-              <span class="tag-pill">100% 遮光</span>
-              <span class="tag-pill">隔熱降溫</span>
-              <span class="tag-pill">高精密手感</span>
-            </div>
+        <div class="catalog-body">
+          <div class="catalog-tags">
+            <span class="tag-item">創世紀多層次遮光窗簾 8</span>
+            <span class="tag-item">多層次遮光布</span>
+            <span class="tag-item">三明治遮光布</span>
           </div>
-          <a href="#contact" class="catalog-btn"><i class="fa-solid fa-book-open"></i> 索取見本帳 / 詢價</a>
+          <a href="http://ctl888.com.tw/index.php?prog=prod_list" target="_blank" class="btn-query"><i class="fa-solid fa-magnifying-glass"></i> 查看產品細節</a>
         </div>
       </div>
 
-      <!-- 2. 夢想家防焰系列 -->
+      <!-- 夢想家防焰 -->
       <div class="catalog-card">
-        <div class="catalog-cover">
-          <span class="catalog-badge">消防署防焰認證</span>
-          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80" alt="夢想家防焰系列">
+        <div class="catalog-header">
+          <div class="catalog-name">夢想家防焰系列</div>
+          <span class="catalog-badge">安全規範</span>
         </div>
-        <div class="catalog-info">
-          <div>
-            <h3 class="catalog-name">夢想家・防焰工程織品系列</h3>
-            <p class="catalog-desc">通過內政部消防署防焰安全認證，專為飯店、公共工程、商用空間量身打造的安全阻燃布種。</p>
-            <div class="tag-list">
-              <span class="tag-pill">防焰性能合格</span>
-              <span class="tag-pill">公共工程指定</span>
-              <span class="tag-pill">耐磨防污</span>
-            </div>
+        <div class="catalog-body">
+          <div class="catalog-tags">
+            <span class="tag-item">夢想家防焰傢飾布</span>
+            <span class="tag-item">防火布</span>
+            <span class="tag-item">工程與商用認證</span>
           </div>
-          <a href="#contact" class="catalog-btn"><i class="fa-solid fa-book-open"></i> 索取見本帳 / 詢價</a>
+          <a href="http://ctl888.com.tw/index.php?prog=prod_list" target="_blank" class="btn-query"><i class="fa-solid fa-magnifying-glass"></i> 查看產品細節</a>
         </div>
       </div>
 
-      <!-- 3. CK 織品與大萊卡 -->
+      <!-- 布拉格系列 -->
       <div class="catalog-card">
-        <div class="catalog-cover">
-          <span class="catalog-badge">設計師推薦</span>
-          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80" alt="CK 織品">
+        <div class="catalog-header">
+          <div class="catalog-name">布拉格系列</div>
+          <span class="catalog-badge">精緻織紋</span>
         </div>
-        <div class="catalog-info">
-          <div>
-            <h3 class="catalog-name">CK 織品・大萊卡頂級系列</h3>
-            <p class="catalog-desc">進口傢飾布觸感，包含高雅細膩緹花布與印花布，適用於蛇形簾、大器客廳與質感軟裝。</p>
-            <div class="tag-list">
-              <span class="tag-pill">高針密緹花</span>
-              <span class="tag-pill">無接縫垂墜</span>
-              <span class="tag-pill">沙發床頭布</span>
-            </div>
+        <div class="catalog-body">
+          <div class="catalog-tags">
+            <span class="tag-item">布拉格提花</span>
+            <span class="tag-item">布拉格印花</span>
+            <span class="tag-item">緹花布 / 印花布</span>
           </div>
-          <a href="#contact" class="catalog-btn"><i class="fa-solid fa-book-open"></i> 索取見本帳 / 詢價</a>
+          <a href="http://ctl888.com.tw/index.php?prog=prod_list" target="_blank" class="btn-query"><i class="fa-solid fa-magnifying-glass"></i> 查看產品細節</a>
         </div>
       </div>
 
-      <!-- 4. 捲簾與百葉窗飾軌道 -->
+      <!-- 紗簾與特殊布料 -->
       <div class="catalog-card">
-        <div class="catalog-cover">
-          <span class="catalog-badge">窗飾五金系統</span>
-          <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80" alt="百葉窗與捲簾">
+        <div class="catalog-header">
+          <div class="catalog-name">無接縫與特殊布料</div>
+          <span class="catalog-badge">細緻質感</span>
         </div>
-        <div class="catalog-info">
-          <div>
-            <h3 class="catalog-name">捲簾・橫式百葉・窗簾軌道</h3>
-            <p class="catalog-desc">整合羅馬簾、直立簾、木竹簾、鋁百葉及實木軌/靜音軌道配件，提供完整的一站式配套。</p>
-            <div class="tag-list">
-              <span class="tag-pill">調光捲簾</span>
-              <span class="tag-pill">木竹百葉</span>
-              <span class="tag-pill">靜音窗軌</span>
-            </div>
+        <div class="catalog-body">
+          <div class="catalog-tags">
+            <span class="tag-item">無接縫布</span>
+            <span class="tag-item">無接縫紗</span>
+            <span class="tag-item">割絨紗</span>
+            <span class="tag-item">割植絨布</span>
           </div>
-          <a href="#contact" class="catalog-btn"><i class="fa-solid fa-book-open"></i> 索取見本帳 / 詢價</a>
+          <a href="http://ctl888.com.tw/index.php?prog=prod_list" target="_blank" class="btn-query"><i class="fa-solid fa-magnifying-glass"></i> 查看產品細節</a>
         </div>
       </div>
 
+      <!-- 卡迪亞與應用傢飾 -->
+      <div class="catalog-card">
+        <div class="catalog-header">
+          <div class="catalog-name">卡迪亞與空間傢飾</div>
+          <span class="catalog-badge">居家應用</span>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-tags">
+            <span class="tag-item">卡迪亞傢飾布</span>
+            <span class="tag-item">沙發布</span>
+            <span class="tag-item">床頭繃布</span>
+          </div>
+          <a href="http://ctl888.com.tw/index.php?prog=prod_list" target="_blank" class="btn-query"><i class="fa-solid fa-magnifying-glass"></i> 查看產品細節</a>
+        </div>
+      </div>
     </div>
+  </main>
 
-    <!-- Contact & Company Info -->
-    <div class="section-head" id="contact" style="margin-top: 80px;">
+  <!-- 營業項目專區 -->
+  <section class="services-wrap" id="services">
+    <div class="section-header">
+      <div class="section-en">BUSINESS SCOPE</div>
+      <h2 class="section-title">全方位營業項目</h2>
+    </div>
+    <div class="service-tags-container">
+      <div class="service-pill"><i class="fa-solid fa-check"></i> 傢飾布</div>
+      <div class="service-pill"><i class="fa-solid fa-check"></i> 窗簾軌道</div>
+      <div class="service-pill"><i class="fa-solid fa-check"></i> 羅馬簾</div>
+      <div class="service-pill"><i class="fa-solid fa-check"></i> 橫式百葉窗</div>
+      <div class="service-pill"><i class="fa-solid fa-check"></i> 直立簾</div>
+      <div class="service-pill"><i class="fa-solid fa-check"></i> 捲簾</div>
+      <div class="service-pill"><i class="fa-solid fa-check"></i> 木竹簾</div>
+      <div class="service-pill"><i class="fa-solid fa-check"></i> 木軌</div>
+      <div class="service-pill"><i class="fa-solid fa-check"></i> 窗簾配件</div>
+    </div>
+  </section>
+
+  <!-- 聯絡我們 -->
+  <section class="container" id="contact">
+    <div class="section-header">
       <div class="section-en">CONTACT US</div>
-      <h2 class="section-title">聯絡卡多利</h2>
-      <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 6px;">歡迎全台設計師、裝潢工程與批發業者來電或來信洽詢</p>
+      <h2 class="section-title">聯絡我們</h2>
     </div>
 
-    <div class="contact-box">
-      <div>
+    <div class="contact-card">
+      <div class="contact-grid">
         <div class="contact-item">
           <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
           <div>
-            <div class="contact-title">公司代表號</div>
-            <div class="contact-detail">(02) 8209-2323</div>
+            <div class="contact-label">電話</div>
+            <div class="contact-val">(02) 8209-2323</div>
           </div>
         </div>
+
         <div class="contact-item">
           <div class="contact-icon"><i class="fa-solid fa-fax"></i></div>
           <div>
-            <div class="contact-title">傳真號碼</div>
-            <div class="contact-detail">(02) 8209-2828</div>
+            <div class="contact-label">傳真</div>
+            <div class="contact-val">(02) 8209-2828</div>
           </div>
         </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <div class="contact-label">E-mail</div>
+            <div class="contact-val">ctl1.ctl2@msa.hinet.net</div>
+          </div>
+        </div>
+
         <div class="contact-item">
           <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
           <div>
-            <div class="contact-title">公司地址</div>
-            <div class="contact-detail">桃園市龜山區萬壽路1段527號2樓</div>
+            <div class="contact-label">公司地址</div>
+            <div class="contact-val">桃園市龜山區萬壽路一段547號</div>
           </div>
         </div>
       </div>
 
-      <div style="display: flex; flex-direction: column; justify-content: center; background: var(--bg-warm); padding: 24px; border-radius: 6px;">
-        <h4 style="font-size: 1.1rem; margin-bottom: 8px;">🏢 業務與樣品索取服務</h4>
-        <p style="font-size: 0.88rem; color: var(--text-sub); margin-bottom: 16px;">如果您是室內設計師、窗簾門市或工程統包，需要索取最新「創世紀」或「夢想家」實體見本帳，請撥打業務專線與我們聯繫，將有專人為您服務。</p>
-        <a href="tel:0282092323" class="catalog-btn" style="background: var(--text-main); color: #fff;"><i class="fa-solid fa-phone"></i> 立即通話洽詢</a>
+      <div class="contact-note">
+        <i class="fa-solid fa-circle-info"></i> 如有疑問請洽各大裝潢店或沙發工廠，謝謝。
       </div>
     </div>
+  </section>
 
-  </main>
-
-  <!-- Footer -->
+  <!-- 頁尾 -->
   <footer>
-    <p>© 1999-2026 卡多利窗飾有限公司 KADOLI TEXTILE CO., LTD. All Rights Reserved.</p>
+    <p>© 1999-2026 卡多利窗飾有限公司 KADOLI CURTAIN CO., LTD. 版權所有</p>
   </footer>
 
 </body>
