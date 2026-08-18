@@ -4,738 +4,447 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卡多利窗飾有限公司 ｜ KADOLI Interior Textiles</title>
-  <!-- Google Fonts & Font Awesome Icons -->
+  
+  <!-- 字體與圖標 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    /* 色彩與基礎設定 */
     :root {
-      --bg-main: #F9F8F5;
+      --bg-light: #FBFBF9;
       --card-bg: #FFFFFF;
-      --text-dark: #1E1D1A;
-      --text-sub: #636059;
-      --text-muted: #8E8B82;
-      --accent: #9E7D4E;
-      --accent-soft: #F4EFE6;
+      --text-main: #1D1D1C;
+      --text-sub: #63615C;
+      --text-light: #9B9892;
+      --accent: #A1825B;
       --border: #E8E5DF;
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 18px;
-      --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
-      --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.08);
-      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --border-dark: #D4D0C8;
+      --transition: all 0.3s ease;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg-main);
-      color: var(--text-dark);
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
       line-height: 1.8;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
     }
+    
     a { text-decoration: none; color: inherit; }
 
-    /* 置頂導覽列 */
-    .navbar {
+    /* 導覽列 (頂部固定) */
+    .header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(249, 248, 245, 0.94);
-      backdrop-filter: blur(12px);
+      background: rgba(251, 251, 249, 0.95);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
-      padding: 16px 40px;
+      padding: 16px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .brand-logo {
+    .logo-group {
       display: flex;
       flex-direction: column;
     }
-    .brand-en {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
+    .logo-en {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
       font-weight: 700;
       letter-spacing: 2px;
-      color: var(--text-dark);
-      line-height: 1.1;
+      color: var(--text-main);
+      line-height: 1.2;
     }
-    .brand-cn {
+    .logo-tw {
       font-size: 0.8rem;
       color: var(--accent);
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       font-weight: 500;
     }
-    .nav-menu {
+    
+    .nav {
       display: flex;
+      gap: 36px;
       align-items: center;
-      gap: 28px;
-      list-style: none;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 500;
       color: var(--text-sub);
     }
-    .nav-menu a:hover { color: var(--text-dark); }
-    .btn-member {
-      background: var(--text-dark);
-      color: #fff !important;
-      padding: 7px 18px;
-      border-radius: 20px;
+    .nav a { position: relative; padding-bottom: 4px; transition: var(--transition); }
+    .nav a:hover { color: var(--text-main); }
+    
+    .btn-login {
+      border: 1px solid var(--border-dark);
+      padding: 6px 18px;
+      border-radius: 4px;
       font-size: 0.85rem;
+      color: var(--text-main);
       transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn-member:hover { background: var(--accent); }
-
-    /* 頂部 Hero 空間大圖 */
-    .hero-banner {
-      position: relative;
-      height: 70vh;
-      min-height: 460px;
-      max-height: 600px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
+      gap: 8px;
+    }
+    .btn-login:hover {
+      background: var(--text-main);
       color: #fff;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.65);
-      transform: scale(1.02);
-      transition: transform 8s ease;
-    }
-    .hero-banner:hover .hero-bg { transform: scale(1.06); }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 860px;
-      padding: 0 20px;
-    }
-    .hero-tag {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      color: #ede8df;
-      display: inline-block;
-    }
-    .hero-title {
-      font-size: 2.6rem;
-      font-weight: 400;
-      line-height: 1.3;
-      letter-spacing: 0.05em;
-      margin-bottom: 18px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-    .hero-sub {
-      font-size: 1rem;
-      color: #e5e5e5;
-      font-weight: 300;
-      letter-spacing: 0.05em;
+      border-color: var(--text-main);
     }
 
-    /* 容器與標題規範 */
-    .container {
-      max-width: 1160px;
+    /* 首頁：品牌介紹 (Hero) */
+    .hero {
+      max-width: 1200px;
       margin: 0 auto;
       padding: 80px 24px;
-    }
-    .section-header {
-      text-align: center;
-      margin-bottom: 44px;
-    }
-    .section-en {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      color: var(--accent);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-    .section-title {
-      font-size: 1.85rem;
-      font-weight: 700;
-      margin-top: 4px;
-      color: var(--text-dark);
-    }
-
-    /* 關於卡多利 (左右排版) */
-    .about-box {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      box-shadow: var(--shadow-subtle);
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 60px;
       align-items: center;
     }
-    .about-img-wrap {
-      height: 100%;
-      min-height: 380px;
-      position: relative;
-    }
-    .about-img-wrap img {
+    .hero-img {
       width: 100%;
-      height: 100%;
+      height: 600px;
       object-fit: cover;
     }
-    .about-text {
-      padding: 44px 40px;
-    }
-    .about-badge {
-      font-size: 0.8rem;
+    .hero-text { padding-right: 40px; }
+    .hero-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
       color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
       display: block;
     }
-    .about-heading {
-      font-size: 1.55rem;
-      font-weight: 700;
-      margin-bottom: 18px;
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 400;
       line-height: 1.4;
+      margin-bottom: 32px;
+      letter-spacing: 0.05em;
     }
-    .about-desc {
+    .hero-desc {
       font-size: 0.95rem;
       color: var(--text-sub);
       text-align: justify;
-      line-height: 1.9;
+      line-height: 2;
     }
 
-    /* 最新消息 (News Cards) */
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-    .news-card {
+    /* 最新消息區塊 */
+    .news-section {
       background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      box-shadow: var(--shadow-subtle);
-      transition: var(--transition);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .news-list { border-top: 1px solid var(--border); }
+    .news-item {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
     }
-    .news-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--accent);
-    }
+    .news-item:hover { background: var(--bg-light); padding-left: 12px; }
     .news-date {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem;
+      width: 140px;
+      font-family: 'Cinzel', serif;
       color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .news-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-    .news-link {
-      font-size: 0.85rem;
-      color: var(--text-sub);
       font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: var(--transition);
     }
-    .news-card:hover .news-link { color: var(--accent); }
+    .news-title { flex: 1; font-weight: 500; }
 
-    /* 產品查詢 (Product Finder & Search Bar) */
+    /* 產品查詢 (現代化 UI 介面) */
+    .product-query {
+      padding: 80px 24px;
+      background: var(--bg-light);
+    }
     .search-panel {
       background: var(--card-bg);
+      padding: 32px;
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
       margin-bottom: 32px;
-      box-shadow: var(--shadow-subtle);
     }
-    .search-form-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1.5fr auto auto;
-      gap: 16px;
-      align-items: center;
-    }
-    .form-group {
+    .search-row {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-end;
     }
-    .form-label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-sub);
+    .form-group { flex: 1; min-width: 200px; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 8px;
     }
-    .form-select, .form-input {
-      padding: 9px 12px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      background: var(--bg-main);
-      color: var(--text-dark);
-      outline: none;
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border-dark);
+      background: var(--bg-light);
+      font-size: 0.95rem;
+      font-family: 'Noto Sans TC';
+      color: var(--text-main);
     }
-    .form-select:focus, .form-input:focus { border-color: var(--accent); }
+    .form-control:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+    
     .checkbox-group {
       display: flex;
-      gap: 14px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--text-sub);
+      gap: 20px;
       align-items: center;
-      margin-top: 22px;
+      height: 42px;
     }
-    .btn-search {
-      background: var(--text-dark);
-      color: #fff;
-      border: none;
-      padding: 10px 24px;
-      border-radius: var(--radius-sm);
-      font-weight: 600;
+    .check-label {
       font-size: 0.9rem;
-      cursor: pointer;
-      margin-top: 22px;
-      transition: var(--transition);
-      display: inline-flex;
+      color: var(--text-sub);
+      display: flex;
       align-items: center;
       gap: 6px;
+      cursor: pointer;
+    }
+
+    .btn-search {
+      background: var(--text-main);
+      color: #fff;
+      border: none;
+      padding: 10px 32px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      height: 42px;
     }
     .btn-search:hover { background: var(--accent); }
 
-    /* 產品卡片網格 (Fabric Cards) */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 24px;
-    }
-    .product-card {
+    /* 搜尋結果表格 */
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      box-shadow: var(--shadow-subtle);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
     }
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--accent);
-    }
-    .product-img-box {
-      height: 180px;
-      position: relative;
-      background: #eee;
-      overflow: hidden;
-    }
-    .product-img-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .product-card:hover .product-img-box img { transform: scale(1.08); }
-    .product-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(30,29,26,0.85);
-      color: #fff;
-      font-size: 0.72rem;
-      padding: 3px 8px;
-      border-radius: 4px;
-      backdrop-filter: blur(4px);
-    }
-    .product-body {
+    .result-table th, .result-table td {
       padding: 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
     }
-    .product-code {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-    .product-name {
-      font-size: 0.88rem;
+    .result-table th {
+      background: var(--bg-light);
+      font-weight: 500;
       color: var(--text-sub);
-      margin-bottom: 10px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
     }
-    .spec-table {
-      width: 100%;
-      font-size: 0.78rem;
-      color: var(--text-sub);
-      border-top: 1px dashed var(--border);
-      padding-top: 8px;
-      margin-bottom: 12px;
-    }
-    .spec-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 3px;
-    }
-    .stock-tag {
-      color: #059669;
-      font-weight: 600;
-    }
-    .btn-zoom {
-      display: block;
-      text-align: center;
-      background: var(--bg-main);
-      border: 1px solid var(--border);
-      color: var(--text-dark);
-      padding: 6px 0;
-      border-radius: var(--radius-sm);
-      font-size: 0.82rem;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-    .btn-zoom:hover {
-      background: var(--text-dark);
-      color: #fff;
+    .result-table tr:hover td { background: #fdfdfc; }
+    .table-btn {
+      color: var(--accent);
+      text-decoration: underline;
+      font-size: 0.85rem;
+      cursor: pointer;
     }
 
-    /* 聯絡我們 (Contact Section) */
-    .contact-card {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-subtle);
-      padding: 44px;
-      max-width: 900px;
-      margin: 0 auto;
+    /* 聯絡我們與頁尾 */
+    .contact-footer {
+      background: #111;
+      color: #fff;
+      padding: 80px 24px 40px;
     }
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 28px;
-      margin-bottom: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
     }
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
+    .contact-item h4 {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
     }
-    .contact-icon {
-      font-size: 1.4rem;
-      color: var(--accent);
-      margin-top: 2px;
-    }
-    .contact-label { font-size: 0.8rem; color: var(--text-muted); }
-    .contact-val { font-size: 1.05rem; font-weight: 600; color: var(--text-dark); }
-    .contact-note {
+    .contact-item p { font-size: 1.05rem; font-weight: 300; }
+    
+    .footer-note {
       text-align: center;
-      font-size: 0.92rem;
-      color: var(--accent);
-      background: var(--accent-soft);
-      padding: 14px;
-      border-radius: var(--radius-sm);
-      font-weight: 500;
-    }
-
-    /* 頁尾 */
-    footer {
-      text-align: center;
-      padding: 36px 20px;
+      border-top: 1px solid #333;
+      padding-top: 40px;
       font-size: 0.85rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
+      color: #888;
+    }
+    .footer-highlight {
+      color: #cca471;
+      font-weight: 500;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
     }
 
     @media (max-width: 768px) {
-      .navbar { padding: 14px 20px; }
-      .nav-menu { display: none; }
-      .hero-title { font-size: 2rem; }
-      .about-box { grid-template-columns: 1fr; }
-      .about-text { padding: 30px 20px; }
-      .about-img-wrap { min-height: 240px; }
-      .search-form-grid { grid-template-columns: 1fr; }
-      .checkbox-group, .btn-search { margin-top: 0; }
-      .contact-card { padding: 28px 20px; }
+      .header { padding: 16px 24px; }
+      .nav { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+      .hero-img { height: 350px; }
+      .hero-text { padding-right: 0; }
+      .search-row { flex-direction: column; align-items: stretch; }
+      .result-table { display: block; overflow-x: auto; white-space: nowrap; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 置頂導覽列 (100% 依原站 5 大分頁) -->
-  <nav class="navbar">
-    <div class="brand-logo">
-      <span class="brand-en">KADOLI CURTAIN</span>
-      <span class="brand-cn">卡多利窗飾有限公司</span>
+  <!-- 置頂導覽列 -->
+  <header class="header">
+    <div class="logo-group">
+      <span class="logo-en">KADOLI</span>
+      <span class="logo-tw">卡多利窗飾</span>
     </div>
-    <ul class="nav-menu">
-      <li><a href="#home">首頁</a></li>
-      <li><a href="#news">最新消息</a></li>
-      <li><a href="#products">產品查詢</a></li>
-      <li><a href="#contact">聯絡我們</a></li>
-      <li><a href="http://ctl888.com.tw/index.php?prog=login" target="_blank" class="btn-member"><i class="fa-solid fa-lock"></i> 會員專區</a></li>
-    </ul>
-  </nav>
-
-  <!-- 首頁 Hero 空間形象 -->
-  <header class="hero-banner" id="home">
-    <img class="hero-bg" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80" alt="高級傢飾布空間">
-    <div class="hero-content">
-      <span class="hero-tag">EST. 1999 ｜ 專業傢飾布與窗飾批發</span>
-      <h1 class="hero-title">誠信・熱誠・客戶至上</h1>
-      <p class="hero-sub">提供防火布、多層次遮光布、緹花布及印花布等多重選擇</p>
-    </div>
+    <nav class="nav">
+      <a href="#about">首頁</a>
+      <a href="#news">最新消息</a>
+      <a href="#products">產品查詢</a>
+      <a href="#contact">聯絡我們</a>
+      <a href="http://ctl888.com.tw/index.php?prog=login" target="_blank" class="btn-login"><i class="fa-solid fa-user"></i> 會員專區</a>
+    </nav>
   </header>
 
-  <!-- 關於卡多利 (原站真實自介) -->
-  <section class="container">
-    <div class="about-box">
-      <div class="about-img-wrap">
-        <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=800&q=80" alt="傢飾布精緻織紋特寫">
-      </div>
-      <div class="about-text">
-        <span class="about-badge">ABOUT KADOLI</span>
-        <h2 class="about-heading">由窗簾批發商轉型為專業傢飾布公司</h2>
-        <p class="about-desc">
-          卡多利窗飾有限公司，成立於1999年，由窗簾批發商轉型為傢飾布公司。一直以來秉持著誠信、熱誠、客戶至上的理念，結合各大設計公司及裝潢業者，以及與國外接洽相互合作，無論品質、樣式或時效性，皆是其他業者望塵莫及。<br><br>
-          傢飾布可廣泛用於窗簾、沙發布、床頭繃布...等，不論是防火布、多層次遮光布、緹花布及印花布...等完全提供您多重選擇，符合您挑剔的需求～
-        </p>
-      </div>
+  <!-- 首頁簡介 -->
+  <section class="hero" id="about">
+    <div class="hero-text">
+      <span class="hero-tag">ESTABLISHED IN 1999</span>
+      <h1 class="hero-title">秉持誠信、熱誠與客戶至上的理念。</h1>
+      <p class="hero-desc">
+        卡多利窗飾有限公司，成立於1999年，由窗簾批發商轉型為傢飾布公司。一直以來結合各大設計公司及裝潢業者，以及與國外接洽相互合作，無論品質、樣式或時效性，皆是其他業者望塵莫及。<br><br>
+        傢飾布可廣泛用於窗簾、沙發布、床頭繃布...等，不論是防火布、多層次遮光布、緹花布及印花布...等完全提供您多重選擇，符合您挑剔的需求～
+      </p>
     </div>
+    <!-- 替換為高質感布料或空間圖 -->
+    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="高級傢飾布" class="hero-img">
   </section>
 
-  <!-- 最新消息 (原站真實公告) -->
-  <section class="container" id="news" style="padding-top: 0;">
-    <div class="section-header">
-      <div class="section-en">LATEST NEWS</div>
+  <!-- 最新消息 -->
+  <section class="news-section" id="news">
+    <div class="container">
       <h2 class="section-title">最新消息</h2>
-    </div>
-
-    <div class="news-grid">
-      <div class="news-card">
-        <div>
-          <div class="news-date"><i class="fa-regular fa-calendar-check"></i> 2026/06/04</div>
-          <h3 class="news-title">AI高溫殺菌定型三折包裝法</h3>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-date">2026/06/04</div>
+          <div class="news-title">AI高溫殺菌定型三折包裝法</div>
         </div>
-        <a href="http://ctl888.com.tw/index.php?prog=news" target="_blank" class="news-link">詳細內容 <i class="fa-solid fa-arrow-right-long"></i></a>
-      </div>
-
-      <div class="news-card">
-        <div>
-          <div class="news-date"><i class="fa-regular fa-calendar-check"></i> 2025/12/24</div>
-          <h3 class="news-title">AI高溫殺菌定型機</h3>
+        <div class="news-item">
+          <div class="news-date">2025/12/24</div>
+          <div class="news-title">AI高溫殺菌定型機</div>
         </div>
-        <a href="http://ctl888.com.tw/index.php?prog=news" target="_blank" class="news-link">詳細內容 <i class="fa-solid fa-arrow-right-long"></i></a>
-      </div>
-
-      <div class="news-card">
-        <div>
-          <div class="news-date"><i class="fa-regular fa-calendar-check"></i> 2025/12/23</div>
-          <h3 class="news-title">新品日本技術AI靜音軌上市</h3>
+        <div class="news-item">
+          <div class="news-date">2025/12/23</div>
+          <div class="news-title">新品日本技術AI靜音軌上市</div>
         </div>
-        <a href="http://ctl888.com.tw/index.php?prog=news" target="_blank" class="news-link">詳細內容 <i class="fa-solid fa-arrow-right-long"></i></a>
       </div>
     </div>
   </section>
 
-  <!-- 產品查詢 (原站真實系統功能) -->
-  <main class="container" id="products" style="padding-top: 0;">
-    <div class="section-header">
-      <div class="section-en">PRODUCT SEARCH</div>
-      <h2 class="section-title">產品查詢</h2>
-    </div>
-
-    <!-- 查詢條件篩選器 (對標原站) -->
-    <div class="search-panel">
-      <form action="http://ctl888.com.tw/index.php?prog=prod_list" method="get" target="_blank">
-        <div class="search-form-grid">
+  <!-- 產品查詢 -->
+  <section class="product-query" id="products">
+    <div class="container">
+      <h2 class="section-title">產品查詢與庫存</h2>
+      
+      <!-- 搜尋面板 UI 升級 -->
+      <div class="search-panel">
+        <form action="http://ctl888.com.tw/index.php?prog=prod_list" method="GET" target="_blank" class="search-row">
+          <input type="hidden" name="prog" value="prod_list">
           <div class="form-group">
-            <label class="form-label">產品分類</label>
-            <select class="form-select" name="cate">
-              <option value="">全部分類 (見本帳系列)</option>
-              <option value="1">創世紀多層次遮光窗簾 8</option>
-              <option value="2">夢想家防焰傢飾布</option>
-              <option value="3">布拉格提花 / 印花</option>
-              <option value="4">卡迪亞傢飾布</option>
-              <option value="5">無接縫布 / 紗</option>
+            <label>分類</label>
+            <select class="form-control" name="category">
+              <option value="">全部類別</option>
+              <option value="curtain">窗簾 / 傢飾布</option>
+              <option value="sheer">紗簾</option>
+              <option value="hardware">五金配件</option>
             </select>
           </div>
-
           <div class="form-group">
-            <label class="form-label">布號 / 型號搜尋</label>
-            <input type="text" class="form-input" placeholder="請輸入布號 (如 L2580, 001A)..." name="keyword">
+            <label>布號 (輸入關鍵字)</label>
+            <input type="text" class="form-control" name="keyword" placeholder="例如：L2580, 001A...">
           </div>
-
           <div class="checkbox-group">
-            <label><input type="checkbox" name="special"> 只顯示特價</label>
-            <label><input type="checkbox" name="in_stock" checked> 只顯示有庫存</label>
+            <label class="check-label"><input type="checkbox" name="sale"> 只顯示特價</label>
+            <label class="check-label"><input type="checkbox" name="stock" checked> 只顯示有庫存</label>
           </div>
-
-          <button type="button" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> 搜尋布樣</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- 布樣展示卡片 (展示原站經典布樣欄位：本號/布號/對花/幅寬/庫存) -->
-    <div class="product-grid">
-      
-      <!-- 布樣 1 -->
-      <div class="product-card">
-        <div class="product-img-box">
-          <span class="product-badge">創世紀8</span>
-          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=500&q=80" alt="多層次遮光布">
-        </div>
-        <div class="product-body">
-          <div>
-            <div class="product-code">L2580-17</div>
-            <div class="product-name">輕奢灰・多層次三明治遮光布</div>
-            <div class="spec-table">
-              <div class="spec-row"><span>本號：</span><span>008-GEN</span></div>
-              <div class="spec-row"><span>幅寬：</span><span>280 cm (無接縫)</span></div>
-              <div class="spec-row"><span>庫存：</span><span class="stock-tag">充足 (現貨)</span></div>
-            </div>
-          </div>
-          <a href="http://ctl888.com.tw/index.php?prog=prod_list" target="_blank" class="btn-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i> 放大查看布樣</a>
-        </div>
+          <button type="submit" class="btn-search">開始查詢</button>
+        </form>
       </div>
 
-      <!-- 布樣 2 -->
-      <div class="product-card">
-        <div class="product-img-box">
-          <span class="product-badge">夢想家</span>
-          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=500&q=80" alt="防焰傢飾布">
-        </div>
-        <div class="product-body">
-          <div>
-            <div class="product-code">DF-8802</div>
-            <div class="product-name">燕麥米・防焰認證遮光布</div>
-            <div class="spec-table">
-              <div class="spec-row"><span>本號：</span><span>DREAM-1</span></div>
-              <div class="spec-row"><span>幅寬：</span><span>150 cm</span></div>
-              <div class="spec-row"><span>庫存：</span><span class="stock-tag">充足 (現貨)</span></div>
-            </div>
-          </div>
-          <a href="http://ctl888.com.tw/index.php?prog=prod_list" target="_blank" class="btn-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i> 放大查看布樣</a>
-        </div>
-      </div>
-
-      <!-- 布樣 3 -->
-      <div class="product-card">
-        <div class="product-img-box">
-          <span class="product-badge">布拉格</span>
-          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=500&q=80" alt="緹花布">
-        </div>
-        <div class="product-body">
-          <div>
-            <div class="product-code">PRG-305</div>
-            <div class="product-name">晨霧白・精密立體緹花布</div>
-            <div class="spec-table">
-              <div class="spec-row"><span>本號：</span><span>PRG-JAC</span></div>
-              <div class="spec-row"><span>幅寬：</span><span>280 cm</span></div>
-              <div class="spec-row"><span>庫存：</span><span class="stock-tag">充足 (現貨)</span></div>
-            </div>
-          </div>
-          <a href="http://ctl888.com.tw/index.php?prog=prod_list" target="_blank" class="btn-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i> 放大查看布樣</a>
-        </div>
-      </div>
-
-      <!-- 布樣 4 -->
-      <div class="product-card">
-        <div class="product-img-box">
-          <span class="product-badge">無接縫紗</span>
-          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=500&q=80" alt="無接縫紗">
-        </div>
-        <div class="product-body">
-          <div>
-            <div class="product-code">SF-1020</div>
-            <div class="product-name">透光柔白・無接縫垂墜紗</div>
-            <div class="spec-table">
-              <div class="spec-row"><span>本號：</span><span>SHEER-9</span></div>
-              <div class="spec-row"><span>幅寬：</span><span>300 cm (高垂度)</span></div>
-              <div class="spec-row"><span>庫存：</span><span class="stock-tag">充足 (現貨)</span></div>
-            </div>
-          </div>
-          <a href="http://ctl888.com.tw/index.php?prog=prod_list" target="_blank" class="btn-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i> 放大查看布樣</a>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- 聯絡我們 (原站真實電話/傳真/信箱/地址/聲明) -->
-  <section class="container" id="contact" style="padding-top: 0;">
-    <div class="section-header">
-      <div class="section-en">CONTACT US</div>
-      <h2 class="section-title">聯絡我們</h2>
-    </div>
-
-    <div class="contact-card">
-      <div class="contact-grid">
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-          <div>
-            <div class="contact-label">電話</div>
-            <div class="contact-val">(02) 8209-2323</div>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fa-solid fa-fax"></i></div>
-          <div>
-            <div class="contact-label">傳真</div>
-            <div class="contact-val">(02) 8209-2828</div>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-          <div>
-            <div class="contact-label">E-mail</div>
-            <div class="contact-val">ctl1.ctl2@msa.hinet.net</div>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-          <div>
-            <div class="contact-label">公司地址</div>
-            <div class="contact-val">桃園市龜山區萬壽路一段547號</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="contact-note">
-        <i class="fa-solid fa-circle-info"></i> 如有疑問請洽各大裝潢店或沙發工廠，謝謝。
-      </div>
+      <!-- 查詢結果範例 (依照原站欄位) -->
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>布本代號</th>
+            <th>布號 / 品名</th>
+            <th>Code</th>
+            <th>幅寬 / 布高</th>
+            <th>庫存量</th>
+            <th>樣品圖</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001A</td>
+            <td>L2580-17 壓紋三明治遮光</td>
+            <td>A-001</td>
+            <td>150cm</td>
+            <td>有庫存</td>
+            <td><span class="table-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> 放大</span></td>
+          </tr>
+          <tr>
+            <td>001A</td>
+            <td>L5560 無接縫透光紗</td>
+            <td>B-012</td>
+            <td>280cm</td>
+            <td>有庫存</td>
+            <td><span class="table-btn"><i class="fa-solid fa-magnifying-glass-plus"></i> 放大</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <!-- 頁尾 -->
-  <footer>
-    <p>© 1999-2026 卡多利窗飾有限公司 KADOLI CURTAIN CO., LTD. 版權所有</p>
+  <!-- 聯絡我們與 Footer -->
+  <footer class="contact-footer" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-item">
+          <h4>電話 PHONE</h4>
+          <p>(02) 8209-2323</p>
+        </div>
+        <div class="contact-item">
+          <h4>傳真 FAX</h4>
+          <p>(02) 8209-2828</p>
+        </div>
+        <div class="contact-item">
+          <h4>電子郵件 E-MAIL</h4>
+          <p>ctl1.ctl2@msa.hinet.net</p>
+        </div>
+        <div class="contact-item">
+          <h4>公司地址 ADDRESS</h4>
+          <p>桃園市龜山區萬壽路一段547號</p>
+        </div>
+      </div>
+      
+      <div class="footer-note">
+        <div class="footer-highlight">如有疑問請洽各大裝潢店或沙發工廠，謝謝。</div>
+        <p>© 1999-2026 卡多利窗飾有限公司 版權所有.</p>
+      </div>
+    </div>
   </footer>
 
 </body>
