@@ -45,28 +45,21 @@
       background: rgba(251, 251, 249, 0.95);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
-      padding: 16px 48px;
+      padding: 12px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .logo-group {
-      display: flex;
-      flex-direction: column;
+    
+    /* 官方 Logo 圖片設定 */
+    .brand-logo-img {
+      height: 48px; /* 控制 Logo 高度保持精緻比例 */
+      width: auto;
+      display: block;
+      transition: var(--transition);
     }
-    .logo-en {
-      font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--text-main);
-      line-height: 1.2;
-    }
-    .logo-tw {
-      font-size: 0.8rem;
-      color: var(--accent);
-      letter-spacing: 2px;
-      font-weight: 500;
+    .brand-logo-img:hover {
+      opacity: 0.85;
     }
     
     .nav {
@@ -304,11 +297,13 @@
 </head>
 <body>
 
-  <!-- 置頂導覽列 -->
+  <!-- 置頂導覽列 (已換上原廠 Logo) -->
   <header class="header">
     <div class="logo-group">
-      <span class="logo-en">KADOLI</span>
-      <span class="logo-tw">卡多利窗飾</span>
+      <a href="#about">
+        <!-- 載入卡多利官方 Logo -->
+        <img src="http://ctl888.com.tw/images/logo.png" alt="卡多利窗飾有限公司" class="brand-logo-img">
+      </a>
     </div>
     <nav class="nav">
       <a href="#about">首頁</a>
